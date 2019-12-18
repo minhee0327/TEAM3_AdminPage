@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import Chart from "chart.js";
 
+let date = new Date();
+let dd = date.getDate();
+
 class BarChart4 extends Component{
     chart = null;
     //AdminClientSalesChart4에서 데이터 받아옵니다.
@@ -15,7 +18,7 @@ class BarChart4 extends Component{
         const config = {
             type:"bar",
             data: {
-                labels: data.map(d => d.value),
+                labels: [dd-2,dd-1,dd],
                 datasets: [
                 {
                     label: "매출액",

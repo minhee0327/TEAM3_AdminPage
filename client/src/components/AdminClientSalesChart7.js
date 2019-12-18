@@ -1,10 +1,10 @@
 import React,{Component} from 'react';
 import axios from 'axios';
-import BarChart3 from './BarChart3';
+import BarChart4 from './BarChart4';
 
 class AdminClientSalesChart7 extends Component{
     state={
-        pair:'주간(최근3주)',
+        pair:'일일',
         data:[],
         data2:[]
     }

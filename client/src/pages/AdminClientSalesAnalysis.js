@@ -5,7 +5,8 @@ import AdminClientSalesChart3 from '../components/AdminClientSalesChart3';
 import AdminClientSalesChart4 from '../components/AdminClientSalesChart4';
 import AdminClientSalesChart5 from '../components/AdminClientSalesChart5';
 import AdminClientSalesChart6 from '../components/AdminClientSalesChart6';
-import "css/TotalClientSales.css";
+import AdminClientSalesChart7 from '../components/AdminClientSalesChart7';
+import "css/lClientSalesAnalysis.css";
 
 class AdminClientSalesAnalysis extends Component{
    constructor(props){
@@ -46,12 +47,25 @@ class AdminClientSalesAnalysis extends Component{
        return (
             <div>
              <h3>회원 매출 분석</h3>
-             <AdminClientSalesChart1/>
-             <AdminClientSalesChart2/>
-             <AdminClientSalesChart3/>
-             <AdminClientSalesChart4/>
-             <AdminClientSalesChart5/>
-             <AdminClientSalesChart6/>
+             <div>
+                <AdminClientSalesChart1/>
+                <AdminClientSalesChart2/>
+                <AdminClientSalesChart3/>
+             </div>
+             <div className="all-chart">
+                <div className="chart">
+                    <AdminClientSalesChart4/>
+                </div>
+                <div className="chart">
+                    <AdminClientSalesChart5/>
+                </div>
+                <div className="chart">
+                    <AdminClientSalesChart6/>
+                </div>
+                <div className="chart">
+                    <AdminClientSalesChart7/>
+                </div>
+             </div>
             </div>
     );
 }

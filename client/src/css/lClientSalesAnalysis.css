@@ -1,0 +1,12 @@
+span{
+    padding: 10px
+}
+.chart{
+    width: 500px;
+    float: left;
+    margin: 30px;
+}
+.all-chart{
+    width: 1200px;
+    display: inline-block;
+}
