@@ -16,3 +16,7 @@ img{
   width:70px;
   height: 70px;
 }
+
+a{
+  text-decoration: none;
+}

@@ -6,12 +6,18 @@ class Customer extends React.Component{
     render(){
         return(
             <TableRow>
-                <TableCell>{this.props.id}</TableCell>
-                <TableCell><img src={this.props.image} alt="profile"/></TableCell>
+                <TableCell>{this.props.user_id}</TableCell>
+                <TableCell>{this.props.funnel_id}</TableCell>
                 <TableCell>{this.props.name}</TableCell>
-                <TableCell>{this.props.birthday}</TableCell>
-                <TableCell>{this.props.gender}</TableCell>
-                <TableCell>{this.props.job}</TableCell>
+                <TableCell>{this.props.identification_number}</TableCell>
+                <TableCell>{this.props.email}</TableCell>
+                <TableCell>{this.props.role}</TableCell>
+                <TableCell>{this.props.phone}</TableCell>
+                <TableCell>{this.props.message_yn}</TableCell>
+                {/* <TableCell>{this.props.dislike_genre}</TableCell>
+                <TableCell>{this.props.wishlist}</TableCell> */}
+                <TableCell>{this.props.noshow_count}</TableCell>
+                <TableCell>{this.props.join_date}</TableCell>
             </TableRow>
         )
     }

@@ -1,3 +1,6 @@
+## 연극어때 Admin Page
+본 프로젝트를 통해서 매출 분석, 회원분석, 후기관리, 회원관리 등을 할 수 있습니다.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -1,24 +1,30 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const menustyle ={
-    width:"500px",
-    heigh:"100%"
-}
 
 const Menu = () => {
     const activeStyle = {
         color: 'green',
-        fontSize: '2rem'
+        // fontSize: '2rem'
     };
 
     return (
-        <div menustyle={menustyle}>
+        <div>
             <ul>
-                <li><NavLink exact to="/" activeStyle={activeStyle}>고객목록리스트</NavLink></li>
-                <li><NavLink exact to="/about" activeStyle={activeStyle}>About</NavLink></li>
-                <li><NavLink to="/about/foo" activeStyle={activeStyle}>About Foo</NavLink></li>
-                <li><NavLink to="/posts" activeStyle={activeStyle}>Posts</NavLink></li>
+                <li><NavLink exact to="/CeoMain" activeStyle={activeStyle}>샘플테스트</NavLink></li>
+                <li><NavLink exact to="/" activeStyle={activeStyle}>계정관리</NavLink></li>
+                    <ul>
+                        <li><NavLink exact to="/" activeStyle={activeStyle}>회원계정</NavLink></li>
+                        <li><NavLink exact to="/adminceoList" activeStyle={activeStyle}>사장님계정</NavLink></li>
+                    </ul>
+                <li><NavLink exact to="/analysis" activeStyle={activeStyle}>분석</NavLink></li>
+                    <ul>
+                        <li><NavLink exact to="/adminClientSalesAnalysis" activeStyle={activeStyle}>회원 매출 분석</NavLink></li>
+                        <li><NavLink exact to="/adminCeoSalesAnalysis" activeStyle={activeStyle}>사장님 매출 분석</NavLink></li>
+                        <li><NavLink exact to="/clientGeneralAnalysis" activeStyle={activeStyle}>회원 분석</NavLink></li>
+                        <li><NavLink exact to="/ceoGeneralAnalysis" activeStyle={activeStyle}>사장님 분석</NavLink></li>
+                    </ul>
+                <li><NavLink exact to="/review" activeStyle={activeStyle}>후기관리</NavLink></li>
             </ul>
             
         </div>

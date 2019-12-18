@@ -1,28 +1,26 @@
 import React, { Component } from 'react';
-
 import { Route, Switch } from 'react-router-dom';
-import { Home, About, Posts } from 'pages';
+import { Home, AdminCeoSalesAnalysis, CeoMain, AdminClientSalesAnalysis} from 'pages';
 import Menu from 'components/Menu';
 
-const style ={
-    display:"inline-block"
-}
 
 class App extends Component {
 
       render(){
         return (
             <div>
-                <div style={style}>
+                <Switch>
+                <Route path="/CeoMain" component={CeoMain}/>
+                <div>
                 <Menu/>
                 </div>
-                <div style={style}>
-                <Route exact path="/" component={Home}/>
-                <Switch>
-                    <Route path="/about/:name" component={About}/>
-                    <Route path="/about" component={About}/>
                 </Switch>
-                <Route path="/posts" component={Posts}/>
+                <hr/>
+                <div>
+                <Route exact path="/" component={Home}/>
+                <Route exact path="/adminCeoSalesAnalysis" component={AdminCeoSalesAnalysis}/>
+                <Route exact path="/AdminClientSalesAnalysis" component={AdminClientSalesAnalysis}/>
+                
                 </div>
 
             </div>

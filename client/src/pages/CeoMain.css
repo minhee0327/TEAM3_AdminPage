@@ -1,0 +1,27 @@
+.logo{
+    color:gold;
+}
+.clearfix h2, .ext{
+    display: inline;
+    vertical-align: middle;
+}
+.owner-header>div{
+    position: relative;
+    min-width: 960px;
+    margin:0 auto;
+    padding: 10px 10px 15px 10px;
+}
+.owner-header .ext {
+    color:#E0E0E0;
+    float: right;
+}
+.owner-header{
+    border-bottom: 1px solid #E0E0E0;
+}
+ul, ol{
+    list-style: none;
+}
+
+.owner-header .ext>li {
+    float: left;
+}
