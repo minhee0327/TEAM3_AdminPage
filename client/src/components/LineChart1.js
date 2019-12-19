@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Chart from "chart.js";
-import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-class BarChart1 extends Component{
+class LineChart1 extends Component{
     chart = null;
     //AdminClientSalesChart4에서 데이터 받아옵니다.
     //AdiminClientSalesAnalysis.js에 첫번째 그래프 출력정보입니다.
@@ -14,12 +13,12 @@ class BarChart1 extends Component{
         const {data, pair,data2} = this.props;
 
         const config = {
-            type:"bar",
+            type:"line",
             data: {
                 labels: data.map(d => d.date),
                 datasets: [
                 {
-                    label: "매출액",
+                    label: "회원가입자수",
                     data: data.map(d => d.value),
                     fill: false,
                     backgroundColor: 'rgba(255, 99, 132, 0.6)',
@@ -38,9 +37,6 @@ class BarChart1 extends Component{
                 }
                 ]
             },
-            plugins:[
-                ChartDataLabels
-            ],
             options:{
                 responsive: true,
                 title: {
@@ -82,4 +78,4 @@ class BarChart1 extends Component{
     }
 }
 
-export default BarChart1;
+export default LineChart1;

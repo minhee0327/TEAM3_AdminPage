@@ -177,6 +177,26 @@ app.get('/api/test',(req,res,err) => {
       }
     })
   })
+  //회원분석 > 회원가입률
+  app.get('/api/userCount',(req,res,err)=>{
+    connection.query('select count(join_date) as users, date_format(join_date,"%Y-%m") as joindate from user where date_format(join_date,"%Y")= date_format(now(),"%Y") group by joindate order by join_date',(err,rows,fields) => {
+      if(err){
+        return res.send(err);
+      }else{
+        return res.send(rows);
+      }
+    })
+  })
+
+  app.get('/api/clientSalesAnalysis',(req,res,err)=>{
+    connection.query('select count(delete_date) as blacklist, date_format(delete_date,"%Y-%m") as deletedate from blacklist where date_format(delete_date,"%Y") = date_format(now(),"%Y") group by deletedate order by delete_date',(err,rows,fields) => {
+      if(err){
+        return res.send(err);
+      }else{
+        return res.send(rows);
+      }
+    })
+  })
 
   /*
   app.get('/api/clientSalesAnalysis',(req,res,err)=>{
@@ -188,6 +208,8 @@ app.get('/api/test',(req,res,err) => {
       }
     })
   })
+
+
   */
  
  // connection.end();
