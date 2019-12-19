@@ -16,7 +16,8 @@
     "react-hot-loader": "^4.12.18",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.3.0",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "yarn": "^1.21.1"
   },
   "scripts": {
     "start": "cross-env NODE_PATH=src react-scripts start",

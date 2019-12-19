@@ -14,8 +14,8 @@ const Menu = () => {
                 <li><NavLink exact to="/CeoMain" activeStyle={activeStyle}>샘플테스트</NavLink></li>
                 <li><NavLink exact to="/" activeStyle={activeStyle}>계정관리</NavLink></li>
                     <ul>
-                        <li><NavLink exact to="/" activeStyle={activeStyle}>회원계정</NavLink></li>
-                        <li><NavLink exact to="/adminceoList" activeStyle={activeStyle}>사장님계정</NavLink></li>
+                        <li><NavLink exact to="/UserManagement" activeStyle={activeStyle}>회원계정</NavLink></li>
+                        <li><NavLink exact to="/CeoManagement" activeStyle={activeStyle}>사장님계정</NavLink></li>
                     </ul>
                 <li><NavLink exact to="/analysis" activeStyle={activeStyle}>분석</NavLink></li>
                     <ul>
