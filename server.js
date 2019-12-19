@@ -191,4 +191,43 @@ app.get('/api/test',(req,res,err) => {
   */
  
  // connection.end();
+
+ app.get('/api/ceoManagement',(req,res) => {
+  connection.query(
+    "select tr.troup_name, u.user_id, u.`name`, u.email, u.identification_number, r.reason_content from reason r, `user` u, ticketing t, troup tr where u.role = 'ceo'",
+    (err,rows,fields) => {
+      res.send(rows);
+    }
+  );
+});
+
+app.get('/api/userManagement',(req,res) => {
+connection.query(
+  "select u.user_id, u.identification_number, u.email, f.funnel_name from user u, funnel f where u.funnel_id = f.funnel_id;",
+  (err,rows,fields) => {
+    res.send(rows);
+  }
+);
+});
+
+app.delete('/api/ceoManagement/:id', (req, res) => {
+  let sql = 'UPDATE user SET isDeleted = 1 WHERE id = ?';
+  let params = [req.params.id];
+  connection.query(sql, params,
+  (err, rows, fields) => {
+  res.send(rows);
+  }
+)
+});
+
+
+app.delete('/api/userManagement/:review_id',(req, res) => {
+  let sql = 'UPDATE review SET isdeleted = 1 WHERE review_id = ?';
+  let params = [req.params.id];
+  connection.query(sql, params,
+    (err, rows, fields) => {
+      res.send(rows);
+    })
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
