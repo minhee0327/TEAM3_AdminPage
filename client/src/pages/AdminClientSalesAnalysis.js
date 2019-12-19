@@ -6,7 +6,7 @@ import AdminClientSalesChart4 from '../components/AdminClientSalesChart4';
 import AdminClientSalesChart5 from '../components/AdminClientSalesChart5';
 import AdminClientSalesChart6 from '../components/AdminClientSalesChart6';
 import AdminClientSalesChart7 from '../components/AdminClientSalesChart7';
-import "css/lClientSalesAnalysis.css";
+import "css/ClientSalesAnalysis.css";
 
 class AdminClientSalesAnalysis extends Component{
    constructor(props){
@@ -31,13 +31,13 @@ class AdminClientSalesAnalysis extends Component{
     .then(res => this.setState({test: res.data}))
     .catch(err => console.log(err));
     }   
-
+    /*
     callApi = async() => {
         const response = await fetch('/api/clientSalesYearlyChart');
         const body = await response.json();
         return body;
     }
-    
+    */
     progress = () => {
         const {completed} = this.state;
         this.setState({completed: completed >= 100 ? 0 : completed +1});
