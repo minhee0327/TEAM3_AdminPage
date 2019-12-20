@@ -28,7 +28,7 @@ class AdminGeneralChart4 extends Component{
                                      'rgba(5, 99, 132, 0.6)'],
                     borderColor:     'rgba(255, 99, 132, 0.6)',
                     lineTension: 0,
-                    pointRadius: 0,
+                    pointRadius: 0 
                 }
                 ]
             },
@@ -45,6 +45,9 @@ class AdminGeneralChart4 extends Component{
                 hover: {
                     mode: "nearest",
                     intersect: true
+                },
+                legend:{
+                    position: 'right'
                 }
             }
         };

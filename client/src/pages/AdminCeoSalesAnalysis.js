@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import Customer from 'components/Customer';
+import CeoSalesList from 'components/CeoSalesList';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
@@ -18,6 +18,7 @@ class  AdminCeoSalesAnalysis extends Component{
           searchKeyword:''
         }
         this.stateRefresh = this.stateRefresh.bind(this);
+        this.handleValueChange = this.handleValueChange.bind(this)
       }
     
       stateRefresh = () => {
@@ -39,7 +40,7 @@ class  AdminCeoSalesAnalysis extends Component{
       }
     
       callApi = async() => {
-        const response = await fetch('/api/test');
+        const response = await fetch('/api/AdminCeoSales');
         const body = await response.json();
         return body;
       }
@@ -57,18 +58,15 @@ class  AdminCeoSalesAnalysis extends Component{
     
       render(){
         const filteredComponents = (data) =>{
-          data = data.filter((c) => {
-            return c.name.indexOf(this.state.searchKeyword) > -1;
-          });
+         
           return data.map((c) => {
-            return <Customer stateRefresh={this.stateRefresh} key={c.user_id} user_id ={c.user_id} funnel_id={c.funnel_id} name={c.name} password={c.password} 
-            identification_number={c.identification_number} email={c.email} role={c.role} phone={c.phone} message_yn ={c.message_yn} noshow_count={c.noshow_count} join_date={c.join_date} />
+            return <CeoSalesList stateRefresh={this.stateRefresh}극단이름={c.극단이름} 사장님={c.사장님} 연락처={c.연락처} 극단별총매출={c.극단별총매출} />
           })
         }
-        const cellList = ["id","funnel_id", "이름", "식별번호", "이메일", "역할","phone","message_yn","noshow_count","join_date"]
+        const cellList = ["극단이름","사장님","연락처","극단별총매출"]
     return (
         <div>
-           <h2>고객목록 리스트</h2>
+           <h3>사장님 매출 분석</h3>
             <Table >
             <TableHead>
               <TableRow>
@@ -80,7 +78,7 @@ class  AdminCeoSalesAnalysis extends Component{
             <TableBody>
               {this.state.customers ? filteredComponents(this.state.customers) :
               <TableRow>
-                <TableCell colSpan="10" align ="center">
+                <TableCell colSpan="4" align ="center">
                   <CircularProgress  variant="determinate" value={this.state.completed}/>
                 </TableCell>
               </TableRow>

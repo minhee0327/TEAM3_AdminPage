@@ -241,6 +241,15 @@ app.get('/api/test',(req,res,err) => {
     })
   })
   
+  app.get('/api/AdminCeoSales',(req,res,err)=>{
+    connection.query('select TR.troup_name as 극단이름, U.name as 사장님 , U.phone as 연락처, sum(T.price) as 극단별총매출 from ticketing T, `show` S, Troup TR, user U where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id group by TR.troup_name',(err,rows,fields) => {
+      if(err){
+        return res.send(err);
+      }else{
+        return res.send(rows);
+      }
+    })
+  })
   /*
   app.get('/api/clientSalesAnalysis',(req,res,err)=>{
     connection.query('',(err,rows,fields) => {

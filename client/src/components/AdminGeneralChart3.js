@@ -44,6 +44,9 @@ class AdminGeneralChart3 extends Component{
                 hover: {
                     mode: "nearest",
                     intersect: true
+                },
+                legend:{
+                    position: 'right'
                 }
             }
         };
