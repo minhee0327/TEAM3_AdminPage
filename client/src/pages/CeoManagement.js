@@ -61,15 +61,15 @@ class CeoManagement extends Component{
          return c.user_id.indexOf(this.state.searchKeyword) > -1;
        });
       return data.map((c) => {
-        return <CeoManagementTable stateRefresh={this.stateRefresh} troup_name={c.troup_name} user_id={c.user_id} name={c.name} email={c.email} identification_number={c.identification_number} reason_content={c.reason_content}/>
+        return <CeoManagementTable stateRefresh={this.stateRefresh} troup_name={c.troup_name} user_id={c.user_id} name={c.name} email={c.email} identification_number={c.identification_number}/>
       })
     }
-    const cellList = ["극단명", "ID", "성명", "E-mail", "사업자번호", "삭제사유", "블랙리스트"]
+    const cellList = ["극단명", "ID", "성명", "E-mail", "사업자번호", "삭제"]
     
     return (
       <div>
         
-        <Container class="ticket_list_table">
+        <Container class="ceo_management_table">
         <Table >
         <TableHead>
           <TableRow>

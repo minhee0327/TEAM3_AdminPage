@@ -264,42 +264,66 @@ app.get('/api/test',(req,res,err) => {
  
  // connection.end();
 
+ //사장님 관리 리스트
  app.get('/api/ceoManagement',(req,res) => {
   connection.query(
-    "select tr.troup_name, u.user_id, u.`name`, u.email, u.identification_number, r.reason_content from reason r, `user` u, ticketing t, troup tr where u.role = 'ceo'",
+    "select t.troup_name, u.user_id, u.`name`, u.email, u.identification_number from user u, troup t where u.user_id = t.user_id and u.role = 'ceo'",
     (err,rows,fields) => {
       res.send(rows);
     }
   );
 });
 
+//회원 관리 리스트
 app.get('/api/userManagement',(req,res) => {
 connection.query(
-  "select u.user_id, u.identification_number, u.email, f.funnel_name from user u, funnel f where u.funnel_id = f.funnel_id;",
+  "select u.user_id, u.name, u.identification_number, u.email, f.funnel_name from user u, funnel f where u.funnel_id = f.funnel_id and u.role = 'client'",
   (err,rows,fields) => {
     res.send(rows);
   }
 );
 });
 
-app.delete('/api/ceoManagement/:id', (req, res) => {
-  let sql = 'UPDATE user SET isDeleted = 1 WHERE id = ?';
-  let params = [req.params.id];
+//사장님 계정 삭제
+app.delete('/api/ceoManagement/:identification_number', (req, res) => {
+  let sql = 'delete from user where identification_number = ?';
+  let params = [req.params.identification_number];
   connection.query(sql, params,
   (err, rows, fields) => {
   res.send(rows);
-  }
-)
+  })
 });
 
-
-app.delete('/api/userManagement/:review_id',(req, res) => {
-  let sql = 'UPDATE review SET isdeleted = 1 WHERE review_id = ?';
-  let params = [req.params.id];
+//회원 계정 삭제
+app.delete('/api/userManagement/:identification_number',(req, res) => {
+  let sql = 'delete from user where identification_number = ?';
+  let params = [req.params.identification_number];
   connection.query(sql, params,
     (err, rows, fields) => {
       res.send(rows);
     })
 });
+
+//회원 계정 블랙리스트 등록
+app.post('/api/userManagement',(req,res)=>{
+  let sql = 'INSERT INTO blacklist VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+  let blacklist_id = req.body.blacklist_id;
+  let user_id = req.body.user_id;
+  let reason_id = req.body.reason_id;
+  let name = req.name;
+  let email = req.email;
+  let role = req.role;
+  let phone = req.phone;
+  let delete_date = req.delete_date;
+  let params = [blacklist_id, name, birthday, gender, job];
+  connection.query(sql, params,
+        (err, rows, fields) => { 
+                res.send(rows);
+        }       
+      );
+
+});
+
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

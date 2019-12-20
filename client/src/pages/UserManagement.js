@@ -60,10 +60,10 @@ class UserManagement extends Component{
          return c.user_id.indexOf(this.state.searchKeyword) > -1;
        });
       return data.map((c) => {
-        return <UserManagementTable stateRefresh={this.stateRefresh} user_id={c.user_id} identification_number={c.identification_number} email={c.email} funnel_name={c.funnel_name}/>
+        return <UserManagementTable stateRefresh={this.stateRefresh} user_id={c.user_id} name={c.name} identification_number={c.identification_number} email={c.email} funnel_name={c.funnel_name}/>
       })
     }
-    const cellList = ["ID", "주민등록번호", "E-mail", "유입경로","블랙리스트"]
+    const cellList = ["ID", "이름", "주민등록번호", "E-mail", "유입경로","블랙리스트"]
 
     return (
       <div>

@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -32,8 +32,8 @@ class CeoManagementBlack extends Component {
     }
 
 
-    BlackListCeoManagement(review_id) {
-        const url = '/api/reviewManagement/' + review_id;
+    blackListCeoManagement(identification_number) {
+        const url = '/api/ceoManagement/' + identification_number;
         fetch(url,{
             method: 'DELETE'
         });
@@ -43,16 +43,16 @@ class CeoManagementBlack extends Component {
     render() {
         return (
             <div>
-                <Button variant="contained" color="secondary" onClick={this.handleClickOpen}>블랙리스트 등록</Button>
+                <Button variant="contained" color="secondary" onClick={this.handleClickOpen}>계정삭제</Button>
                 <Dialog onClose={this.handleClose} open={this.state.open}>
-                    <DialogTitle onClose={this.handleClose}>블랙리스트 경고</DialogTitle>
+                    <DialogTitle onClose={this.handleClose}>삭제 경고</DialogTitle>
                     <DialogContent>
                         <Typography gutterBottom>
-                            블랙리스트 등록하시겠습니까?
+                            계정을 삭제하시겠습니까?
                         </Typography>
                     </DialogContent>
                     <DialogActions>
-                        <Button variant="contained" color="primary" onClick={(e) => {this.BlackListCeoManagement(this.props.review_id)}}>신고</Button>
+                        <Button variant="contained" color="primary" onClick={(e) => {this.blackListCeoManagement(this.props.identification_number)}}>확인</Button>
                         <Button variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
                     </DialogActions>
                 </Dialog>
