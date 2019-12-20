@@ -187,8 +187,8 @@ app.get('/api/test',(req,res,err) => {
       }
     })
   })
-
-  app.get('/api/clientSalesAnalysis',(req,res,err)=>{
+  //회원분석 > 강퇴수(블랙리스트수)
+  app.get('/api/userBlacklist',(req,res,err)=>{
     connection.query('select count(delete_date) as blacklist, date_format(delete_date,"%Y-%m") as deletedate from blacklist where date_format(delete_date,"%Y") = date_format(now(),"%Y") group by deletedate order by delete_date',(err,rows,fields) => {
       if(err){
         return res.send(err);
@@ -198,6 +198,49 @@ app.get('/api/test',(req,res,err) => {
     })
   })
 
+  //회원분석 > 장르별 예매율
+  app.get('/api/clientgenre',(req,res,err)=>{
+    connection.query('select G.genre_name, round(sum(T.price)/(select sum(price) as total from ticketing)*100) as sum from genre G, `show` S, ticketing T where G.genre_id = S.genre_id and S.show_id = T.show_id group by G.genre_name',(err,rows,fields) => {
+      if(err){
+        return res.send(err);
+      }else{
+        return res.send(rows);
+      }
+    })
+  })
+  //회원분석 > 유입률 (client, ceo 모두 집계)
+  app.get('/api/clientfunnel',(req,res,err)=>{
+    connection.query('select F.funnel_name, round(count(F.funnel_id)/(select count(user_id) from user) * 100) as count from funnel F, User U where F.funnel_id = U.funnel_id group by F.funnel_id order by count desc',(err,rows,fields) => {
+      if(err){
+        return res.send(err);
+      }else{
+        return res.send(rows);
+      }
+    })
+  })
+
+  //회원분석 > 연령별 가입자수
+  app.get('/api/clientByAge',(req,res,err)=>{
+    connection.query('select round(count(user_id)/(select count(user_id) from user where length(identification_number)=13)*100) as 인원, substr(date_format(now(),"%Y") -(if (substr(identification_number,7,1) = 1 or 2 ,1900, 2000) +substr(identification_number,1,2)) +1 ,1,1)*10 as 연령 from user where length(identification_number) =13 group by 연령 order by 연령',(err,rows,fields) => {
+      if(err){
+        return res.send(err);
+      }else{
+        return res.send(rows);
+      }
+    })
+  })
+
+  //회원분석 > 성별 가입자수(비율)
+  app.get('/api/clientGender',(req,res,err)=>{
+    connection.query('select round(count(user_id)/(select count(user_id) from user where length(identification_number)=13)*100) as count , if(substr(identification_number,7,1) = 4, 2 ,if(substr(identification_number,7,1) =3 ,1,substr(identification_number,7,1) )) as gender from user where length(identification_number)=13 group by gender',(err,rows,fields) => {
+      if(err){
+        return res.send(err);
+      }else{
+        return res.send(rows);
+      }
+    })
+  })
+  
   /*
   app.get('/api/clientSalesAnalysis',(req,res,err)=>{
     connection.query('',(err,rows,fields) => {
@@ -208,8 +251,6 @@ app.get('/api/test',(req,res,err) => {
       }
     })
   })
-
-
   */
  
  // connection.end();

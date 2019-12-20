@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Chart from "chart.js";
 
-class LineChart1 extends Component{
+class AdminGeneralChart5 extends Component{
     chart = null;
     //AdminClientSalesChart4에서 데이터 받아옵니다.
     //AdiminClientSalesAnalysis.js에 첫번째 그래프 출력정보입니다.
@@ -10,28 +10,21 @@ class LineChart1 extends Component{
             this.chart.destroy();
             this.chart = null;
         }
-        const {data, pair,data2} = this.props;
+        const {data, pair} = this.props;
 
         const config = {
-            type:"line",
+            type:"pie",
             data: {
-                labels: data.map(d => d.date),
+                labels: ['여성','남성'],
                 datasets: [
                 {
-                    label: "회원가입자수",
+                    label: "성별 가입자수",
                     data: data.map(d => d.value),
                     fill: false,
-                    backgroundColor: 'rgba(255, 99, 132, 0.6)',
-                    borderColor: 'rgba(255, 99, 132, 0.6)',
-                    lineTension: 0,
-                    pointRadius: 0,
-                },
-                {
-                    label: "환불액",
-                    data: data2.map(d => d.value2),
-                    fill: false,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 0.2)',
+                    backgroundColor: ['rgba(255, 99, 132, 0.6)',
+                                     'rgba(255, 5, 132, 0.6)',
+                                     ],
+                    borderColor:     'rgba(255, 99, 132, 0.6)',
                     lineTension: 0,
                     pointRadius: 0,
                 }
@@ -41,7 +34,7 @@ class LineChart1 extends Component{
                 responsive: true,
                 title: {
                     display: true,
-                    text: `${pair} 매출액`
+                    text: `${pair}`
                 },
                 tooltips: {
                     mode: "index",
@@ -78,4 +71,4 @@ class LineChart1 extends Component{
     }
 }
 
-export default LineChart1;
+export default AdminGeneralChart5;

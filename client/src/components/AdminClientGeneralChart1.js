@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import axios from 'axios';
-import LineChart1 from './LineChart1';
+import AdminGeneralChart1 from './AdminGeneralChart1';
 
 class AdminClientGeneralChart1 extends Component{
     state={
@@ -24,11 +24,11 @@ class AdminClientGeneralChart1 extends Component{
                 })
               );
             
-            const response1 = await axios.get(`/api/userCount`)
+            const response1 = await axios.get(`/api/userBlacklist`)
             const data2 = response1.data.map(
                 c=>({
-                    date2: c.joindate,
-                    value2: c.users
+                    date2: c.deletedate,
+                    value2: c.blacklist
                 })
             );
             this.setState({
@@ -51,7 +51,7 @@ class AdminClientGeneralChart1 extends Component{
     render(){
         return (
             <div>
-               {this.state.data.length>0 && <LineChart1 data = {this.state.data} pair = {this.state.pair} data2={this.state.data2}/>}     
+               {this.state.data.length>0 && <AdminGeneralChart1 data = {this.state.data} pair = {this.state.pair} data2={this.state.data2}/>}     
             </div>
         )
     }
