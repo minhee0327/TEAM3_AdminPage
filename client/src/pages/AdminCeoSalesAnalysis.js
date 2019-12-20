@@ -6,8 +6,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import { CircularProgress } from '@material-ui/core';
-
-
+import InputBase from '@material-ui/core/InputBase';
 
 class  AdminCeoSalesAnalysis extends Component{
         constructor(props) {
@@ -18,7 +17,6 @@ class  AdminCeoSalesAnalysis extends Component{
           searchKeyword:''
         }
         this.stateRefresh = this.stateRefresh.bind(this);
-        this.handleValueChange = this.handleValueChange.bind(this)
       }
     
       stateRefresh = () => {
@@ -57,8 +55,12 @@ class  AdminCeoSalesAnalysis extends Component{
       }
     
       render(){
+
         const filteredComponents = (data) =>{
-         
+          data = data.filter((c) =>{
+            return c.사장님.indexOf(this.state.searchKeyword)>-1;
+          })
+
           return data.map((c) => {
             return <CeoSalesList stateRefresh={this.stateRefresh}극단이름={c.극단이름} 사장님={c.사장님} 연락처={c.연락처} 극단별총매출={c.극단별총매출} />
           })
@@ -67,6 +69,13 @@ class  AdminCeoSalesAnalysis extends Component{
     return (
         <div>
            <h3>사장님 매출 분석</h3>
+           
+           <InputBase
+            placeholder="사장님 이름으로 검색하기"
+            name="searchKeyword"
+            value={this.state.searchKeyword}
+            onChange={this.handleValueChange}/>
+
             <Table >
             <TableHead>
               <TableRow>
