@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -32,8 +32,8 @@ class UserManagementBlack extends React.Component {
     }
 
 
-    blackListUserManagement(review_id) {
-        const url = '/api/userManagement/' + review_id;
+    blackListUserManagement(identification_number) {
+        const url = '/api/userManagement/' + identification_number;
         fetch(url,{
             method: 'DELETE'
         });
@@ -52,7 +52,7 @@ class UserManagementBlack extends React.Component {
                         </Typography>
                     </DialogContent>
                     <DialogActions>
-                        <Button variant="contained" color="primary" onClick={(e) => {this.blackListUserManagement(this.props.review_id)}}>확인</Button>
+                        <Button variant="contained" color="primary" onClick={(e) => {this.blackListUserManagement(this.props.identification_number)}}>확인</Button>
                         <Button variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
                     </DialogActions>
                 </Dialog>

@@ -12,8 +12,7 @@ class CeoManagementTable extends React.Component{
                 <TableCell>{this.props.name}</TableCell>
                 <TableCell>{this.props.email}</TableCell>
                 <TableCell>{this.props.identification_number}</TableCell>
-                <TableCell>{this.props.reason_content}</TableCell>
-                <TableCell><CeoManagementBlack stateRefresh={this.props.stateRefresh} id={this.props.id}/></TableCell>
+                <TableCell><CeoManagementBlack stateRefresh={this.props.stateRefresh} identification_number={this.props.identification_number}/></TableCell>
             </TableRow>
         )
     }

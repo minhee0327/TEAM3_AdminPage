@@ -8,10 +8,11 @@ class UserManagementTable extends React.Component{
         return(
             <TableRow>
                 <TableCell>{this.props.user_id}</TableCell>
+                <TableCell>{this.props.name}</TableCell>
                 <TableCell>{this.props.identification_number}</TableCell>
                 <TableCell>{this.props.email}</TableCell>
                 <TableCell>{this.props.funnel_name}</TableCell>
-                <TableCell><UserManagementBlack stateRefresh={this.props.stateRefresh} review_id={this.props.review_id}/></TableCell>
+                <TableCell><UserManagementBlack stateRefresh={this.props.stateRefresh} identification_number={this.props.identification_number}/></TableCell>
             </TableRow>
         )
     }
