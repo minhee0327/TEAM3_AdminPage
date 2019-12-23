@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import Chart from "chart.js";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-class AdminCeoSalesChart5_BarChart extends Component{
+let date = new Date();
+let dd = date.getDate();
+
+class AdminCeoSalesChartBarChart8 extends Component{
     chart = null;
-    //AdminClientSalesChart4에서 데이터 받아옵니다.
-    //AdiminClientSalesAnalysis.js에 첫번째 그래프 출력정보입니다.
     draw(){
         if(this.chart){
             this.chart.destroy();
@@ -16,7 +17,7 @@ class AdminCeoSalesChart5_BarChart extends Component{
         const config = {
             type:"bar",
             data: {
-                labels: data.map(d => d.date),
+                labels: [dd-2,dd-1,dd],
                 datasets: [
                 {
                     label: "매출액",
@@ -82,4 +83,4 @@ class AdminCeoSalesChart5_BarChart extends Component{
     }
 }
 
-export default AdminCeoSalesChart5_BarChart;
+export default AdminCeoSalesChartBarChart8;

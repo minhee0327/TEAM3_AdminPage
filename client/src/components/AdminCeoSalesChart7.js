@@ -1,10 +1,10 @@
 import React,{Component} from 'react';
 import axios from 'axios';
-import AdminCeoSalesChartBarChart5 from './AdminCeoSalesChartBarChart5';
+import AdminCeoSalesChartBarChart7 from './AdminCeoSalesChartBarChart7';
 
-class AdminClientSalesChart5 extends Component{
+class AdminClientSalesChart7 extends Component{
     state={
-        pair:'연간',
+        pair:'주간',
         data:[],
         data2:[]
     }
@@ -16,22 +16,21 @@ class AdminClientSalesChart5 extends Component{
     getData = async()=>{
         //const{pair} = this.state;
         try{
-            const response = await axios.get(`/adminCeoSalesDetail5/`+this.props.phone)
+            const response = await axios.get(`/adminCeoSalesDetail7/`+this.props.phone)
             //const data = response.data.map(c=>c.sum)
             //console.log(response);
             const data = response.data.map(
-                // 필요한 값만 추출해서 날짜, 값이 들어있는 객체 생성
                 (candle) => ({
-                  date: candle.yyyy, // 시간만 나타나도록 설정
+                  //date: candle.mm, 
                   value: candle.sum
                 })
               );
             
-            const response1 = await axios.get(`/adminCeoSalesRefundDetail5/`+this.props.phone)
+            const response1 = await axios.get(`/adminCeoSalesRefundDetail7/`+this.props.phone)
             //console.log(response1);
             const data2 = response1.data.map(
                 c=>({
-                    date2: c.yyyy,
+                    //date2: c.mm,
                     value2: c.sum
                 })
             );
@@ -55,11 +54,11 @@ class AdminClientSalesChart5 extends Component{
     render(){
         return (
             <div>
-               {this.state.data.length>0 && <AdminCeoSalesChartBarChart5 data = {this.state.data} pair = {this.state.pair} data2={this.state.data2}/>}     
+               {this.state.data.length>0 && <AdminCeoSalesChartBarChart7 data = {this.state.data} pair = {this.state.pair} data2={this.state.data2}/>}     
             </div>
         )
     }
 
 }
 
-export default AdminClientSalesChart5;
+export default AdminClientSalesChart7;

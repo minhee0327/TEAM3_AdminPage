@@ -262,7 +262,7 @@ app.get('/api/test',(req,res,err) => {
   app.get('/adminCeoSalesDetail/:phone',(req,res,err)=>{
     let sql = 'select sum(T.price) as sum from ticketing T, `show` S, Troup TR, user U where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone =? group by TR.troup_name';
     let params = [req.params.phone];
-    console.log(params);
+    //console.log(params);
     connection.query(sql,params,(err,rows,fields) => {
       if(err){
         return res.send(err);
@@ -276,7 +276,6 @@ app.get('/api/test',(req,res,err) => {
   app.get('/adminCeoSalesDetail2/:phone',(req,res,err)=>{
     let sql = 'select sum(T.price) as sum from ticketing T, `show` S, Troup TR, user U where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone =? and year(T.ticketing_date) = year(sysdate()) group by TR.troup_name';
     let params = [req.params.phone];
-    console.log(params);
     connection.query(sql,params,(err,rows,fields) => {
       if(err){
         return res.send(err);
@@ -290,7 +289,6 @@ app.get('/api/test',(req,res,err) => {
   app.get('/adminCeoSalesDetail3/:phone',(req,res,err)=>{
     let sql = 'select sum(T.price) as sum from ticketing T, `show` S, Troup TR, user U where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone =? and month(T.ticketing_date) = month(sysdate()) and year(T.ticketing_date) = year(sysdate()) group by TR.troup_name';
     let params = [req.params.phone];
-    console.log(params);
     connection.query(sql,params,(err,rows,fields) => {
       if(err){
         return res.send(err);
@@ -304,7 +302,6 @@ app.get('/api/test',(req,res,err) => {
   app.get('/adminCeoSalesDetail4/:phone',(req,res,err)=>{
     let sql = 'select sum(T.price) as sum from ticketing T, `show` S, Troup TR, user U where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone =? and month(T.ticketing_date) = month(sysdate()) and year(T.ticketing_date) = year(sysdate()) and Date(T.ticketing_date) = Date(sysdate()) group by TR.troup_name';
     let params = [req.params.phone];
-    console.log(params);
     connection.query(sql,params,(err,rows,fields) => {
       if(err){
         return res.send(err);
@@ -318,7 +315,6 @@ app.get('/api/test',(req,res,err) => {
   app.get('/adminCeoSalesDetail5/:phone',(req,res,err)=>{
     let sql = 'select year(T.ticketing_date) as yyyy , sum(T.price) as sum from ticketing T, user U,`show` S, Troup TR where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone = ? and year(T.ticketing_date) between year(now())-2 and year(now()) group by year(T.ticketing_date) order by yyyy';
     let params = [req.params.phone];
-    console.log(params);
     connection.query(sql,params,(err,rows,fields) => {
       if(err){
         return res.send(err);
@@ -331,7 +327,30 @@ app.get('/api/test',(req,res,err) => {
   app.get('/adminCeoSalesRefundDetail5/:phone',(req,res,err)=>{
     let sql = 'select year(refund_apply_date) as yyyy , sum(price) as sum from ticketing T, user U, `show` S, Troup TR where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone = ? and year(refund_apply_date) between year(now())-2 and year(now()) group by year(refund_apply_date) order by yyyy';
     let params = [req.params.phone];
-    console.log(params);
+    connection.query(sql,params,(err,rows,fields) => {
+      if(err){
+        return res.send(err);
+      }else{
+        return res.send(rows);
+      }
+    })
+  });
+  //사장님 분석 > 클릭시 상세보기 > 3개월 (월간) 총 매출액
+  app.get('/adminCeoSalesDetail6/:phone',(req,res,err)=>{
+    let sql = 'select month(T.ticketing_date) as mm , sum(price) as sum from ticketing T, user U, `show` S, Troup TR where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone = ?  and (T.ticketing_date) between (date_add(now(),interval -2 month)) and (now()) group by month(T.ticketing_date) order by mm';
+    let params = [req.params.phone];
+    connection.query(sql,params,(err,rows,fields) => {
+      if(err){
+        return res.send(err);
+      }else{
+        return res.send(rows);
+      }
+    })
+  });
+  //사장님 분석 > 클릭시 상세보기 > 3개월(월간) 총 환불액
+  app.get('/adminCeoSalesRefundDetail6/:phone',(req,res,err)=>{
+    let sql = 'select month(T.refund_apply_date) as mm , sum(price) as sum from ticketing T, user U, `show` S, Troup TR where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone = ?  and (T.refund_apply_date) between (date_add(now(),interval -2 month)) and (now()) group by month(refund_apply_date) order by mm';
+    let params = [req.params.phone];
     connection.query(sql,params,(err,rows,fields) => {
       if(err){
         return res.send(err);
@@ -341,7 +360,58 @@ app.get('/api/test',(req,res,err) => {
     })
   });
 
-  
+
+  //사장님 분석 > 클릭시 상세보기 > 3주간(주간) 총 매출액
+  app.get('/adminCeoSalesDetail7/:phone',(req,res,err)=>{
+    let sql = ' SELECT DATE_FORMAT(DATE_SUB(T.ticketing_date, INTERVAL (DAYOFWEEK(T.ticketing_date)-1) DAY), "%Y/%m/%d") as start, DATE_FORMAT(DATE_SUB(T.ticketing_date, INTERVAL (DAYOFWEEK(T.ticketing_date)-7) DAY), "%Y/%m/%d") as end, DATE_FORMAT(T.ticketing_date, "%Y-%m-%U") AS `date`, date_format(now(),"%Y-%m-%U") as now, sum(`price`)as sum FROM ticketing T, user U, `show` S, Troup TR where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone = ? and DATE_FORMAT(`ticketing_date`, "%U") between date_format(now(),"%U")- 2 and date_format(now(),"%U") GROUP BY date order by date asc';
+    let params = [req.params.phone];
+    connection.query(sql,params,(err,rows,fields) => {
+      if(err){
+        return res.send(err);
+      }else{
+        return res.send(rows);
+      }
+    })
+  });
+
+  //사장님 분석 > 클릭시 상세보기 > 3주간(주간) 총 환불액
+  app.get('/adminCeoSalesRefundDetail7/:phone',(req,res,err)=>{
+    let sql = ' SELECT DATE_FORMAT(DATE_SUB(T.refund_apply_date, INTERVAL (DAYOFWEEK(T.refund_apply_date)-1) DAY), "%Y/%m/%d") as start, DATE_FORMAT(DATE_SUB(T.refund_apply_date, INTERVAL (DAYOFWEEK(T.refund_apply_date)-7) DAY), "%Y/%m/%d") as end, DATE_FORMAT(T.refund_apply_date, "%Y-%m-%U") AS `date`, date_format(now(),"%Y-%m-%U") as now, sum(`price`) FROM ticketing T, user U, `show` S, Troup TR where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone = ? and DATE_FORMAT(T.refund_apply_date, "%U") between date_format(now(),"%U")- 2 and date_format(now(),"%U") GROUP BY date order by date asc';
+    let params = [req.params.phone];
+    connection.query(sql,params,(err,rows,fields) => {
+      if(err){
+        return res.send(err);
+      }else{
+        return res.send(rows);
+      }
+    })
+  });
+  //사장님 분석 > 클릭시 상세보기 > 3일간(일간) 총 매출액
+  app.get('/adminCeoSalesDetail8/:phone',(req,res,err)=>{
+    let sql = 'select DATE(T.ticketing_date) as dd , sum(price) as sum from ticketing T, user U, `show` S, Troup TR where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone =? and DATE(T.ticketing_date) between DATE(now())-2 and DATE(now()) group by DATE(T.ticketing_date) order by dd';
+    let params = [req.params.phone];
+    connection.query(sql,params,(err,rows,fields) => {
+      if(err){
+        return res.send(err);
+      }else{
+        return res.send(rows);
+      }
+    })
+  });
+
+  //사장님 분석 > 클릭시 상세보기 > 3일간(일간) 총 환불액
+  app.get('/adminCeoSalesRefundDetail8/:phone',(req,res,err)=>{
+    let sql = 'select DATE(T.refund_apply_date) as dd , sum(price) as sum from ticketing T, user U, `show` S, Troup TR where  T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone = ? and DATE(T.refund_apply_date) between DATE(now())-2 and DATE(now()) group by DATE(T.refund_apply_date) order by dd';
+    let params = [req.params.phone];
+    connection.query(sql,params,(err,rows,fields) => {
+      if(err){
+        return res.send(err);
+      }else{
+        return res.send(rows);
+      }
+    })
+  });
+
 
 
   /*

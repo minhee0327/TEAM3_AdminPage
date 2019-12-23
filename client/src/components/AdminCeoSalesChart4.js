@@ -35,7 +35,7 @@ class AdminCeoSalesChart4 extends Component{
     */
     callApi = async() =>{
         const response = await fetch('/adminCeoSalesDetail4/'+this.props.phone);
-        console.log(response);
+        //console.log(response);
         const body = await response.json();
         return body;
     }
