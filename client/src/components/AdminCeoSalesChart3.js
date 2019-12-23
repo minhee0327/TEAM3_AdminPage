@@ -2,7 +2,7 @@ import React,{ Component } from 'react';
 import TotalClientSales from 'components/TotalClientSales';
 import { CircularProgress } from '@material-ui/core';
 
-class AdminCeoSalesChart1 extends Component{
+class AdminCeoSalesChart3 extends Component{
     //올해 총 매출액
     constructor(props){
         super(props);
@@ -34,7 +34,7 @@ class AdminCeoSalesChart1 extends Component{
     }
     */
     callApi = async() =>{
-        const response = await fetch('/adminCeoSalesDetail/'+this.props.phone);
+        const response = await fetch('/adminCeoSalesDetail3/'+this.props.phone);
         console.log(response);
         const body = await response.json();
         return body;
@@ -59,10 +59,10 @@ class AdminCeoSalesChart1 extends Component{
         }
         return(
             <span>
-                가입 후 총 매출액 : {this.state.chart ? filteredComponents(this.state.chart) :<CircularProgress  variant="determinate" value={this.state.completed}/>}
+                월간 총 매출액 : {this.state.chart ? filteredComponents(this.state.chart) :<CircularProgress  variant="determinate" value={this.state.completed}/>}
             </span>
         );
     }
 }
 
-export default AdminCeoSalesChart1;
+export default AdminCeoSalesChart3;

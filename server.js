@@ -96,7 +96,7 @@ app.get('/api/test',(req,res,err) => {
         return res.send(rows);
       }
     })
-  })
+  });
   
   //회원매출분석 > 연간 환불액 쿼리문
   app.get('/api/clientSalesYearlyRefundAnalysis',(req,res,err)=>{
@@ -108,7 +108,7 @@ app.get('/api/test',(req,res,err) => {
         return res.send(rows);
       }
     })
-  })
+  });
 
   //회원매출분석 > 월간 매출액 쿼리문
   app.get('/api/clietMonthlySalesAnalysis',(req,res,err)=>{
@@ -120,7 +120,8 @@ app.get('/api/test',(req,res,err) => {
         return res.send(rows);
       }
     })
-  })
+  });
+
   //회원매출분석 > 월간 환불액 쿼리문
   app.get('/api/clientSalesMonthlyRefundAnalysis',(req,res,err)=>{
     connection.query('select month(refund_apply_date) as mm , sum(price) as sum from ticketing where (refund_apply_date) between (date_add(now(),interval -3 month)) and (now()) group by month(refund_apply_date) order by mm'
@@ -131,7 +132,7 @@ app.get('/api/test',(req,res,err) => {
         return res.send(rows);
       }
     })
-  })
+  });
 
   //회원매출분석 > 주간매출
   app.get('/api/clientSalesWeeklyAnalysis',(req,res,err)=>{
@@ -143,7 +144,8 @@ app.get('/api/test',(req,res,err) => {
         return res.send(rows);
       }
     })
-  })
+  });
+
   //회원매출분석 >주간환불
   app.get('/api/clientSalesWeeklyRefundAnalysis',(req,res,err)=>{
     connection.query('SELECT DATE_FORMAT(DATE_SUB(`refund_apply_date`, INTERVAL (DAYOFWEEK(`refund_apply_date`)-1) DAY), "%Y/%m/%d") as start, DATE_FORMAT(DATE_SUB(`refund_apply_date`, INTERVAL (DAYOFWEEK(`refund_apply_date`)-7) DAY), "%Y/%m/%d") as end, DATE_FORMAT(`refund_apply_date`, "%Y-%m-%U") AS `date`, date_format(now(),"%Y-%m-%U") as now, sum(`price`) as sum FROM ticketing where DATE_FORMAT(`refund_apply_date`, "%U") between date_format(now(),"%U")- 2 and date_format(now(),"%U") GROUP BY date order by date asc',
@@ -155,6 +157,7 @@ app.get('/api/test',(req,res,err) => {
       }
     })
   })
+  ;
   //회원 매출 분석 > 일간 매출
   app.get('/api/clientDailySalesAnalysis',(req,res,err)=>{
     connection.query('select DATE(ticketing_date) as dd , sum(price) as sum from ticketing where DATE(ticketing_date) between DATE(now())-2 and DATE(now()) group by DATE(ticketing_date) order by dd',
@@ -165,7 +168,8 @@ app.get('/api/test',(req,res,err) => {
         return res.send(rows);
       }
     })
-  })
+  });
+
   //회원 매출 분석 > 일간 환불
   app.get('/api/clientSalesDailyRefundAnalysis',(req,res,err)=>{
     connection.query('select DATE(refund_apply_date) as dd , sum(price) as sum from ticketing where DATE(refund_apply_date) between DATE(now())-2 and DATE(now()) group by DATE(refund_apply_date) order by dd',
@@ -176,7 +180,8 @@ app.get('/api/test',(req,res,err) => {
         return res.send(rows);
       }
     })
-  })
+  });
+
   //회원분석 > 회원가입률
   app.get('/api/userCount',(req,res,err)=>{
     connection.query('select count(join_date) as users, date_format(join_date,"%Y-%m") as joindate from user where date_format(join_date,"%Y")= date_format(now(),"%Y") group by joindate order by join_date',(err,rows,fields) => {
@@ -186,7 +191,8 @@ app.get('/api/test',(req,res,err) => {
         return res.send(rows);
       }
     })
-  })
+  });
+
   //회원분석 > 강퇴수(블랙리스트수)
   app.get('/api/userBlacklist',(req,res,err)=>{
     connection.query('select count(delete_date) as blacklist, date_format(delete_date,"%Y-%m") as deletedate from blacklist where date_format(delete_date,"%Y") = date_format(now(),"%Y") group by deletedate order by delete_date',(err,rows,fields) => {
@@ -196,7 +202,7 @@ app.get('/api/test',(req,res,err) => {
         return res.send(rows);
       }
     })
-  })
+  });
 
   //회원분석 > 장르별 예매율
   app.get('/api/clientgenre',(req,res,err)=>{
@@ -207,7 +213,7 @@ app.get('/api/test',(req,res,err) => {
         return res.send(rows);
       }
     })
-  })
+  });
   //회원분석 > 유입률 (client, ceo 모두 집계)
   app.get('/api/clientfunnel',(req,res,err)=>{
     connection.query('select F.funnel_name, round(count(F.funnel_id)/(select count(user_id) from user) * 100) as count from funnel F, User U where F.funnel_id = U.funnel_id group by F.funnel_id order by count desc',(err,rows,fields) => {
@@ -217,7 +223,7 @@ app.get('/api/test',(req,res,err) => {
         return res.send(rows);
       }
     })
-  })
+  });
 
   //회원분석 > 연령별 가입자수
   app.get('/api/clientByAge',(req,res,err)=>{
@@ -228,7 +234,7 @@ app.get('/api/test',(req,res,err) => {
         return res.send(rows);
       }
     })
-  })
+  });
 
   //회원분석 > 성별 가입자수(비율)
   app.get('/api/clientGender',(req,res,err)=>{
@@ -239,7 +245,7 @@ app.get('/api/test',(req,res,err) => {
         return res.send(rows);
       }
     })
-  })
+  });
   
   //사장님분석 > CeoList(게시판) 
   app.get('/api/AdminCeoSales',(req,res,err)=>{
@@ -250,10 +256,10 @@ app.get('/api/test',(req,res,err) => {
         return res.send(rows);
       }
     })
-  })
+  });
 
-  //사장님 분석 > 클릭시 상세보기
-  app.get('/tests/:phone',(req,res,err)=>{
+  //사장님 분석 > 클릭시 상세보기 > 가입 후 총 매출액
+  app.get('/adminCeoSalesDetail/:phone',(req,res,err)=>{
     let sql = 'select sum(T.price) as sum from ticketing T, `show` S, Troup TR, user U where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone =? group by TR.troup_name';
     let params = [req.params.phone];
     console.log(params);
@@ -264,7 +270,80 @@ app.get('/api/test',(req,res,err) => {
         return res.send(rows);
       }
     })
-  })
+  });
+
+  //사장님 분석 > 클릭시 상세보기 > 가입 후 연간 총 매출액
+  app.get('/adminCeoSalesDetail2/:phone',(req,res,err)=>{
+    let sql = 'select sum(T.price) as sum from ticketing T, `show` S, Troup TR, user U where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone =? and year(T.ticketing_date) = year(sysdate()) group by TR.troup_name';
+    let params = [req.params.phone];
+    console.log(params);
+    connection.query(sql,params,(err,rows,fields) => {
+      if(err){
+        return res.send(err);
+      }else{
+        return res.send(rows);
+      }
+    })
+  });
+
+  //사장님 분석 > 클릭시 상세보기 > 가입 후 월간 총 매출액
+  app.get('/adminCeoSalesDetail3/:phone',(req,res,err)=>{
+    let sql = 'select sum(T.price) as sum from ticketing T, `show` S, Troup TR, user U where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone =? and month(T.ticketing_date) = month(sysdate()) and year(T.ticketing_date) = year(sysdate()) group by TR.troup_name';
+    let params = [req.params.phone];
+    console.log(params);
+    connection.query(sql,params,(err,rows,fields) => {
+      if(err){
+        return res.send(err);
+      }else{
+        return res.send(rows);
+      }
+    })
+  });
+
+  //사장님 분석 > 클릭시 상세보기 > 가입 후 일간 총 매출액
+  app.get('/adminCeoSalesDetail4/:phone',(req,res,err)=>{
+    let sql = 'select sum(T.price) as sum from ticketing T, `show` S, Troup TR, user U where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone =? and month(T.ticketing_date) = month(sysdate()) and year(T.ticketing_date) = year(sysdate()) and Date(T.ticketing_date) = Date(sysdate()) group by TR.troup_name';
+    let params = [req.params.phone];
+    console.log(params);
+    connection.query(sql,params,(err,rows,fields) => {
+      if(err){
+        return res.send(err);
+      }else{
+        return res.send(rows);
+      }
+    })
+  });
+
+  //사장님 분석 > 클릭시 상세보기 > 3년간 (연간) 총 매출액
+  app.get('/adminCeoSalesDetail5/:phone',(req,res,err)=>{
+    let sql = 'select year(T.ticketing_date) as yyyy , sum(T.price) as sum from ticketing T, user U,`show` S, Troup TR where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone = ? and year(T.ticketing_date) between year(now())-2 and year(now()) group by year(T.ticketing_date) order by yyyy';
+    let params = [req.params.phone];
+    console.log(params);
+    connection.query(sql,params,(err,rows,fields) => {
+      if(err){
+        return res.send(err);
+      }else{
+        return res.send(rows);
+      }
+    })
+  });
+  //사장님 분석 > 클릭시 상세보기 > 3년간 (연간) 총 환불액
+  app.get('/adminCeoSalesRefundDetail5/:phone',(req,res,err)=>{
+    let sql = 'select year(refund_apply_date) as yyyy , sum(price) as sum from ticketing T, user U, `show` S, Troup TR where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone = ? and year(refund_apply_date) between year(now())-2 and year(now()) group by year(refund_apply_date) order by yyyy';
+    let params = [req.params.phone];
+    console.log(params);
+    connection.query(sql,params,(err,rows,fields) => {
+      if(err){
+        return res.send(err);
+      }else{
+        return res.send(rows);
+      }
+    })
+  });
+
+  
+
+
   /*
   app.get('/api/clientSalesAnalysis',(req,res,err)=>{
     connection.query('',(err,rows,fields) => {
