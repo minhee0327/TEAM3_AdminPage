@@ -241,6 +241,7 @@ app.get('/api/test',(req,res,err) => {
     })
   })
   
+  //사장님분석 > CeoList(게시판) 
   app.get('/api/AdminCeoSales',(req,res,err)=>{
     connection.query('select TR.troup_name as 극단이름, U.name as 사장님 , U.phone as 연락처, sum(T.price) as 극단별총매출 from ticketing T, `show` S, Troup TR, user U where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id group by TR.troup_name',(err,rows,fields) => {
       if(err){
@@ -251,9 +252,11 @@ app.get('/api/test',(req,res,err) => {
     })
   })
 
-  app.get('/api/AdminCeoSales/:phone',(req,res,err)=>{
-    let sql = 'select if(substr(identification_number,7,1)=3,1,if(substr(identification_number,7,1)=4,2,substr(identification_number,7,1))) as gender, count(user_id) as count from user where length(identification_number) = 13 group by gender';
+  //사장님 분석 > 클릭시 상세보기
+  app.get('/tests/:phone',(req,res,err)=>{
+    let sql = 'select sum(T.price) as sum from ticketing T, `show` S, Troup TR, user U where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone =? group by TR.troup_name';
     let params = [req.params.phone];
+    console.log(params);
     connection.query(sql,params,(err,rows,fields) => {
       if(err){
         return res.send(err);

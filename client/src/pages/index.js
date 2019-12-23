@@ -7,6 +7,7 @@ export { default as CeoManagement } from './CeoManagement';
 export { default as UserManagement} from './UserManagement';
 export { default as CeoMain } from './CeoMain';
 
+export { default as Test } from './Test';
 export { default as Post } from './Post';
 export { default as Posts } from './Posts';
 
