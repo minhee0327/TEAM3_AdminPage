@@ -51,6 +51,7 @@ class AdminGeneralChart1 extends Component{
                     mode: "nearest",
                     intersect: true
                 }
+                
             }
         };
         const ctx = this.canvas.getContext("2d");
@@ -74,6 +75,7 @@ class AdminGeneralChart1 extends Component{
             <div className="">
                 <canvas ref = {ref => (this.canvas = ref)}/>
             </div>
+            
         );
     }
 }

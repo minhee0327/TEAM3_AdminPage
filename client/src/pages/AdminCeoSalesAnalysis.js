@@ -42,7 +42,7 @@ class  AdminCeoSalesAnalysis extends Component{
         const body = await response.json();
         return body;
       }
-    
+
       progress = () => {
         const {completed} = this.state;
         this.setState({completed: completed >= 100 ? 0 : completed +1});
@@ -62,7 +62,7 @@ class  AdminCeoSalesAnalysis extends Component{
           })
 
           return data.map((c) => {
-            return <CeoSalesList stateRefresh={this.stateRefresh}극단이름={c.극단이름} 사장님={c.사장님} 연락처={c.연락처} 극단별총매출={c.극단별총매출} />
+            return <CeoSalesList stateRefresh={this.stateRefresh} 극단이름={c.극단이름} 사장님={c.사장님} 연락처={c.연락처} 극단별총매출={c.극단별총매출} />
           })
         }
         const cellList = ["극단이름","사장님","연락처","극단별총매출"]
@@ -79,9 +79,11 @@ class  AdminCeoSalesAnalysis extends Component{
             <Table >
             <TableHead>
               <TableRow>
+                <div>
                 {cellList.map(c => {
                   return <TableCell key={c.toString()}>{c}</TableCell>
                 })}
+                </div>
               </TableRow>
             </TableHead>
             <TableBody>

@@ -4,7 +4,7 @@ import AdminGeneralChart5 from './AdminGeneralChart5';
 
 class AdminClientGeneralChart5 extends Component{
     state={
-        pair:'성별 가입자 비율',
+        pair:'성별 가입자 비율 (%)',
         data:[],
     }
 

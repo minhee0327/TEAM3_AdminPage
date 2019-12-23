@@ -4,7 +4,7 @@ import AdminGeneralChart3 from './AdminGeneralChart3';
 
 class AdminClientGeneralChart3 extends Component{
     state={
-        pair:'유입률(%)',
+        pair:'유입률 (%)',
         data:[],
     }
 

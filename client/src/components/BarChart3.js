@@ -15,7 +15,7 @@ class BarChart3 extends Component{
         const config = {
             type:"bar",
             data: {
-                labels: ['2주','2주','1주'],
+                labels: ['3주','2주','1주'],
                 datasets: [
                 {
                     label: "매출액",
@@ -45,7 +45,7 @@ class BarChart3 extends Component{
                 },
                 tooltips: {
                     mode: "index",
-                    intersect: false
+                    intersect: false,
                 },
                 hover: {
                     mode: "nearest",

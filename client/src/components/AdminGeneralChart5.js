@@ -22,9 +22,8 @@ class AdminGeneralChart5 extends Component{
                     data: data.map(d => d.value),
                     fill: false,
                     backgroundColor: ['rgba(255, 99, 132, 0.6)',
-                                     'rgba(255, 5, 132, 0.6)',
-                                     ],
-                    borderColor:     'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)'],
+                    borderColor:      'rgba(255, 255, 255, 0.6)',
                     lineTension: 0,
                     pointRadius: 0,
                 }

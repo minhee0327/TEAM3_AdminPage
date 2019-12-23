@@ -15,18 +15,19 @@ class AdminGeneralChart4 extends Component{
         const config = {
             type:"pie",
             data: {
-                labels: data.map(d => d.date),
+                labels: data.map(d => d.date + '대'),
                 datasets: [
                 {
                     label: "연령별 가입자수",
                     data: data.map(d => d.value),
                     fill: false,
                     backgroundColor: ['rgba(255, 99, 132, 0.6)',
-                                     'rgba(255, 5, 132, 0.6)',
-                                     'rgba(155, 19, 32, 0.6)',
-                                     'rgba(55, 99, 132, 0.6)',
-                                     'rgba(5, 99, 132, 0.6)'],
-                    borderColor:     'rgba(255, 99, 132, 0.6)',
+                                        'rgba(54, 162, 235, 0.6)',
+                                        'rgba(255, 206, 86, 0.6)',
+                                        'rgba(75, 192, 192, 0.6)',
+                                        'rgba(153, 102, 255, 0.6)',
+                                        'rgba(255, 159, 64, 0.6)'],
+                    borderColor:     'rgba(255, 255, 255, 0.6)',
                     lineTension: 0,
                     pointRadius: 0 
                 }

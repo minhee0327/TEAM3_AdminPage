@@ -25,7 +25,7 @@ class BarChart1 extends Component{
                     backgroundColor: 'rgba(255, 99, 132, 0.6)',
                     borderColor: 'rgba(255, 99, 132, 0.6)',
                     lineTension: 0,
-                    pointRadius: 0,
+                    pointRadius: 0
                 },
                 {
                     label: "환불액",

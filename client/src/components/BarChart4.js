@@ -28,6 +28,10 @@ class BarChart4 extends Component{
                     borderColor: 'rgba(255, 99, 132, 0.6)',
                     lineTension: 0,
                     pointRadius: 0,
+                    datalabels: {
+                        color: '#FFCE56'
+                    }
+                    //barPercentage: 0.5
                 },
                 {
                     label: "환불액",
@@ -37,6 +41,7 @@ class BarChart4 extends Component{
                     borderColor: 'rgba(54, 162, 235, 0.2)',
                     lineTension: 0,
                     pointRadius: 0,
+                    //barPercentage: 0.5
                 }
                 ]
             },
@@ -48,12 +53,35 @@ class BarChart4 extends Component{
                 },
                 tooltips: {
                     mode: "index",
-                    intersect: false
+                    intersect: false,
+         
                 },
                 hover: {
                     mode: "nearest",
                     intersect: true
+                },
+                //chartjs-plugin-datalabels : 값이 차트 맨 위에 뿌려질 수 있도록 하기.(모듈설치: https://chartjs-plugin-datalabels.netlify.com/guide/getting-started.html#configuration)
+                plugiins:{
+                    color: '#36A2EB',
+                 
+                },
+                //(x,y축)설정 => API 참조.. 하다가 일단 넘어감(시간상)
+                scales:{
+                    xAxes:[{
+                        display: true,
+                        /*
+                        id:'newId',
+                        gridLines:{
+                            lineWidth:0
+                        }
+                        */
+                    }],
+                    yAxes: [{
+                        display: true,
+                        
+                    }]
                 }
+                
             }
         };
         const ctx = this.canvas.getContext("2d");
