@@ -35,7 +35,7 @@ class CeoManagementBlack extends Component {
     blackListCeoManagement(identification_number) {
         const url = '/api/ceoManagement/' + identification_number;
         fetch(url,{
-            method: 'DELETE'
+            method: 'delete'
         });
         this.props.stateRefresh();
     } 
