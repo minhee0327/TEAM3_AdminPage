@@ -6,7 +6,63 @@ import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import Container from '@material-ui/core/Container';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress, InputBase } from '@material-ui/core';
+import {withStyles} from '@material-ui/core/styles';
+import SearchIcon from '@material-ui/icons/Search';
+import { fade } from '@material-ui/core/styles/colorManipulator';
+
+
+const styles = theme => ({
+  grow: {
+      flexGrow: 1,
+  },
+  search: {
+      position: 'relative',
+      borderRadius: theme.shape.borderRadius,
+      backgroundColor: fade(theme.palette.common.white, 0.15),
+      '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+      },
+      marginLeft: 0,
+      width: '100%',
+      [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing.unit,
+      width: 'auto',
+      },
+      },
+      searchIcon: {
+          width: theme.spacing.unit * 9,
+          height: '100%',
+          position: 'absolute',
+          pointerEvents: 'none',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          },
+          inputRoot: {
+          color: 'inherit',
+          width: '100%',
+          },
+          inputInput: {
+              paddingTop: theme.spacing.unit,
+              paddingRight: theme.spacing.unit,
+              paddingBottom: theme.spacing.unit,
+              paddingLeft: theme.spacing.unit * 10,
+              transition: theme.transitions.create('width'),
+              width: '100%',
+              [theme.breakpoints.up('sm')]: {
+              width: 120,
+              '&:focus': {
+              width: 200,
+              },
+              },
+              },
+});
+
+
+
+
+
 
 class UserManagement extends Component{
     constructor(props) {
@@ -22,9 +78,8 @@ class UserManagement extends Component{
   stateRefresh = () => {
     this.setState({
       userManagement:'',
-      completed:0,
-      searchKeyword:''
-  });
+      completed:0
+    });
     this.callApi()
     .then(res => this.setState({userManagement: res}))
     .catch(err => console.log(err));
@@ -57,16 +112,35 @@ class UserManagement extends Component{
   render(){
     const filteredComponents = (data) =>{
        data = data.filter((c) => {
-         return c.user_id.indexOf(this.state.searchKeyword) > -1;
+         return c.name.indexOf(this.state.searchKeyword) > -1;
        });
       return data.map((c) => {
         return <UserManagementTable stateRefresh={this.stateRefresh} user_id={c.user_id} name={c.name} identification_number={c.identification_number} email={c.email} funnel_name={c.funnel_name}/>
       })
     }
+    const { classes } = this.props;
     const cellList = ["ID", "이름", "주민등록번호", "E-mail", "유입경로","블랙리스트"]
 
     return (
-      <div>
+      <div className={classes.root}>
+         
+
+                <div className={classes.grow} />
+                <div className={classes.search}>
+                <div className={classes.searchIcon}>
+                <SearchIcon />
+               </div>
+                <InputBase
+                placeholder="검색하기"
+                classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+                }}
+                name = "searchKeyword"
+                value={this.state.searchKeyword}
+                onChange={this.handleValueChange}
+                />
+                </div>
         
         <Container class="user_management_table">
         <Table >
@@ -93,4 +167,4 @@ class UserManagement extends Component{
 };
 }
 
-export default UserManagement;
+export default withStyles(styles)(UserManagement);

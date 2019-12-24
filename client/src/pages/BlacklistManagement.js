@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
-import CeoManagementTable from 'components/CeoManagementTable'
+import BlacklistManagementTable from 'components/BlacklistManagementTable'
+import BlacklistManagementAdd from 'components/BlacklistManagementAdd'
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,7 +11,6 @@ import { CircularProgress, InputBase } from '@material-ui/core';
 import {withStyles} from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-
 
 
 const styles = theme => ({
@@ -64,11 +64,12 @@ const styles = theme => ({
 
 
 
-class CeoManagement extends Component{
+
+class BlacklistManagement extends Component{
     constructor(props) {
     super(props);
     this.state = {
-      ceoManagement:'',
+      blacklistManagement:'',
       completed:0,
       searchKeyword:''
     }
@@ -77,24 +78,23 @@ class CeoManagement extends Component{
 
   stateRefresh = () => {
     this.setState({
-      ceoManagement:'',
+      blacklistManagement:'',
       completed:0,
-      searchKeyword:''
-  });
+    });
     this.callApi()
-    .then(res => this.setState({ceoManagement: res}))
+    .then(res => this.setState({blacklistManagement: res}))
     .catch(err => console.log(err));
   }
 
   componentDidMount(){
     this.timer = setInterval(this.progress, 20);
     this.callApi()
-    .then(res => this.setState({ceoManagement: res}))
+    .then(res => this.setState({blacklistManagement: res}))
     .catch(err => console.log(err));
   }
 
   callApi = async() => {
-    const response = await fetch('/api/ceoManagement');
+    const response = await fetch('/api/blacklistManagement');
     const body = await response.json();
     return body;
   }
@@ -102,7 +102,7 @@ class CeoManagement extends Component{
   progress = () => {
     const {completed} = this.state;
     this.setState({completed: completed >= 100 ? 0 : completed +1});
-  };
+  }
 
   handleValueChange =(e) =>{
     let nextState = {}
@@ -116,20 +116,22 @@ class CeoManagement extends Component{
          return c.name.indexOf(this.state.searchKeyword) > -1;
        });
       return data.map((c) => {
-        return <CeoManagementTable stateRefresh={this.stateRefresh} troup_name={c.troup_name} user_id={c.user_id} name={c.name} email={c.email} identification_number={c.identification_number}/>
-      })
+        return <BlacklistManagementTable stateRefresh={this.stateRefresh} blacklist_id={c.blacklist_id} user_id={c.user_id} reason_id={c.reason_id} name={c.name} email={c.email} role={c.role} phone={c.phone} delete_date={c.delete_date} reason_content={c.reason_content}/>
+      });
     }
     const { classes } = this.props;
-    const cellList = ["극단명", "ID", "성명", "E-mail", "사업자번호", "삭제"]
-    
+    const cellList = ["Number", "ID","이유번호", "이름", "E-mail", "역할", "전화번호",  "삭제날짜", "삭제사유"]
+
     return (
       <div className={classes.root}>
-        
+         
+        <BlacklistManagementAdd stateRefresh={this.stateRefresh}/>
+
                 <div className={classes.grow} />
                 <div className={classes.search}>
                 <div className={classes.searchIcon}>
                 <SearchIcon />
-                </div>
+               </div>
                 <InputBase
                 placeholder="검색하기"
                 classes={{
@@ -141,10 +143,8 @@ class CeoManagement extends Component{
                 onChange={this.handleValueChange}
                 />
                 </div>
-
-
-
-        <Container class="ceo_management_table">
+        
+        <Container class="blacklist_management_table">
         <Table >
         <TableHead>
           <TableRow>
@@ -154,7 +154,7 @@ class CeoManagement extends Component{
           </TableRow>
         </TableHead>
         <TableBody>
-          {this.state.ceoManagement ? filteredComponents(this.state.ceoManagement) :
+          {this.state.blacklistManagement ? filteredComponents(this.state.blacklistManagement) :
           <TableRow>
             <TableCell colSpan="6" align ="center">
               <CircularProgress  variant="determinate" value={this.state.completed}/>
@@ -166,7 +166,7 @@ class CeoManagement extends Component{
       </Container>
       </div>
     );
-};
+}
 }
 
-export default withStyles(styles)(CeoManagement);
+export default withStyles(styles)(BlacklistManagement);

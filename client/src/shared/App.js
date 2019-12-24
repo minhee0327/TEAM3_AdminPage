@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Home, AdminCeoSalesAnalysis, CeoMain, AdminClientSalesAnalysis,ClientGeneralAnalysis,UserManagement,CeoManagement} from 'pages';
+import { Home, AdminCeoSalesAnalysis, CeoMain, AdminClientSalesAnalysis,ClientGeneralAnalysis,UserManagement,CeoManagement,BlacklistManagement} from 'pages';
 import Menu from 'components/Menu';
 
 
@@ -21,8 +21,9 @@ class App extends Component {
                 <Route exact path="/adminCeoSalesAnalysis" component={AdminCeoSalesAnalysis}/>
                 <Route exact path="/AdminClientSalesAnalysis" component={AdminClientSalesAnalysis}/>
                 <Route exact path="/clientGeneralAnalysis" component={ClientGeneralAnalysis}/>
-                <Route path="/UserManagement" component={UserManagement}/>
-                <Route path="/CeoManagement" component={CeoManagement}/>
+                <Route path="/userManagement" component={UserManagement}/>
+                <Route path="/ceoManagement" component={CeoManagement}/>
+                <Route exact path="/blacklistManagement" component={BlacklistManagement}/>
                 </div>
 
             </div>

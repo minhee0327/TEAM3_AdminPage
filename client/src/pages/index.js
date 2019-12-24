@@ -6,6 +6,7 @@ export { default as AdminClientSalesChart1 } from '../components/AdminClientSale
 export { default as AdminClientSalesChart2 } from '../components/AdminClientSalesChart2';
 export { default as CeoManagement } from './CeoManagement';
 export { default as UserManagement} from './UserManagement';
+export { default as BlacklistManagement} from './BlacklistManagement';
 export { default as CeoMain } from './CeoMain';
 
 

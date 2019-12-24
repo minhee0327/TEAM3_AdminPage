@@ -212,14 +212,26 @@ connection.query(
 );
 });
 
+
+//블랙리스트 관리
+app.get('/api/blacklistManagement',(req,res) => {
+  connection.query(
+    "select b.blacklist_id, b.user_id, b.reason_id, b.name, b.email, b.role, b.phone, b.delete_date, r.reason_content from blacklist b, reason r where b.reason_id = r.reason_id",
+    (err,rows,fields) => {
+      res.send(rows);
+    }
+  );
+  });
+
+
 //사장님 계정 삭제
-app.delete('/api/ceoManagement/:identification_number', (req, res) => {
+app.delete('/api/userManagement/:identification_number',(req, res) => {
   let sql = 'delete from user where identification_number = ?';
   let params = [req.params.identification_number];
   connection.query(sql, params,
-  (err, rows, fields) => {
-  res.send(rows);
-  })
+    (err, rows, fields) => {
+      res.send(rows);
+    })
 });
 
 //회원 계정 삭제
@@ -232,23 +244,23 @@ app.delete('/api/userManagement/:identification_number',(req, res) => {
     })
 });
 
-//회원 계정 블랙리스트 등록
-app.post('/api/userManagement',(req,res)=>{
+//블랙리스트 등록
+app.post('/api/blacklistManagement',(req,res)=>{
   let sql = 'INSERT INTO blacklist VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
   let blacklist_id = req.body.blacklist_id;
   let user_id = req.body.user_id;
   let reason_id = req.body.reason_id;
-  let name = req.name;
-  let email = req.email;
-  let role = req.role;
-  let phone = req.phone;
-  let delete_date = req.delete_date;
-  let params = [blacklist_id, name, birthday, gender, job];
+  let name = req.body.name;
+  let email = req.body.email;
+  let role = req.body.role;
+  let phone = req.body.phone;
+  let delete_date = req.body.delete_date;
+  let params = [blacklist_id, user_id, reason_id, name, email, role, phone, delete_date];
   connection.query(sql, params,
         (err, rows, fields) => { 
                 res.send(rows);
         }       
-      );
+      )
 
 });
 

@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 
+
+
 class UserManagementBlack extends React.Component {
     constructor(props) {
         super(props);
@@ -18,6 +20,8 @@ class UserManagementBlack extends React.Component {
         this.handleClickOpen = this.handleClickOpen.bind(this)
         this.handleClose = this.handleClose.bind(this);
     }
+
+
 
     handleClickOpen() {
         this.setState({
@@ -43,12 +47,12 @@ class UserManagementBlack extends React.Component {
     render() {
         return (
             <div>
-                <Button variant="contained" color="secondary" onClick={this.handleClickOpen}>블랙리스트 등록</Button>
+                <Button variant="contained" color="secondary" onClick={this.handleClickOpen}>계정삭제</Button>
                 <Dialog onClose={this.handleClose} open={this.state.open}>
-                    <DialogTitle onClose={this.handleClose}>블랙리스트 경고</DialogTitle>
+                    <DialogTitle onClose={this.handleClose}>삭제 경고</DialogTitle>
                     <DialogContent>
                         <Typography gutterBottom>
-                            블랙리스트 등록하시겠습니까?
+                            계정을 삭제하시겠습니까?
                         </Typography>
                     </DialogContent>
                     <DialogActions>
@@ -63,5 +67,6 @@ class UserManagementBlack extends React.Component {
 
 
 }
+
 
 export default UserManagementBlack;
