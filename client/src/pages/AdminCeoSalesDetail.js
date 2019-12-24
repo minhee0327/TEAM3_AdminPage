@@ -18,6 +18,8 @@ const AdminCeoSalesDetail =({match}) => {
             <AdminCeoSalesChart2 phone={match.params.phone} ceo={match.params.ceo}/>
             <AdminCeoSalesChart3 phone={match.params.phone} ceo={match.params.ceo}/>
             <AdminCeoSalesChart4 phone={match.params.phone} ceo={match.params.ceo}/>
+
+            
             <AdminCeoSalesChart5 phone={match.params.phone} ceo={match.params.ceo}/>
             <AdminCeoSalesChart6 phone={match.params.phone} ceo={match.params.ceo}/>
             <AdminCeoSalesChart7 phone={match.params.phone} ceo={match.params.ceo}/>

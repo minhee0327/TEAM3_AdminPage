@@ -22,7 +22,7 @@ const Menu = () => {
                         <li><NavLink exact to="/adminClientSalesAnalysis" activeStyle={activeStyle}>회원 매출 분석</NavLink></li>
                         <li><NavLink exact to="/adminCeoSalesAnalysis" activeStyle={activeStyle}>사장님 매출 분석</NavLink></li>
                         <li><NavLink exact to="/clientGeneralAnalysis" activeStyle={activeStyle}>회원 분석</NavLink></li>
-                        <li><NavLink exact to="/ceoGeneralAnalysis" activeStyle={activeStyle}>사장님 분석</NavLink></li>
+                        <li><NavLink exact to="/adminCeoGeneralAnalysis" activeStyle={activeStyle}>사장님 분석</NavLink></li>
                     </ul>
                 <li><NavLink exact to="/review" activeStyle={activeStyle}>후기관리</NavLink></li>
             </ul>
