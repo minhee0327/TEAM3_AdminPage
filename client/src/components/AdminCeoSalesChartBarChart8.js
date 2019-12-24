@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import Chart from "chart.js";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-class BarChart3 extends Component{
+let date = new Date();
+let dd = date.getDate();
+
+class AdminCeoSalesChartBarChart8 extends Component{
     chart = null;
-    //AdminClientSalesChart4에서 데이터 받아옵니다.
-    //AdiminClientSalesAnalysis.js에 첫번째 그래프 출력정보입니다.
     draw(){
         if(this.chart){
             this.chart.destroy();
@@ -15,7 +17,7 @@ class BarChart3 extends Component{
         const config = {
             type:"bar",
             data: {
-                labels: ['3주','2주','1주'],
+                labels: [dd-2,dd-1,dd],
                 datasets: [
                 {
                     label: "매출액",
@@ -24,7 +26,7 @@ class BarChart3 extends Component{
                     backgroundColor: 'rgba(255, 99, 132, 0.6)',
                     borderColor: 'rgba(255, 99, 132, 0.6)',
                     lineTension: 0,
-                    pointRadius: 0,
+                    pointRadius: 0
                 },
                 {
                     label: "환불액",
@@ -37,6 +39,9 @@ class BarChart3 extends Component{
                 }
                 ]
             },
+            plugins:[
+                ChartDataLabels
+            ],
             options:{
                 responsive: true,
                 title: {
@@ -45,7 +50,7 @@ class BarChart3 extends Component{
                 },
                 tooltips: {
                     mode: "index",
-                    intersect: false,
+                    intersect: false
                 },
                 hover: {
                     mode: "nearest",
@@ -78,4 +83,4 @@ class BarChart3 extends Component{
     }
 }
 
-export default BarChart3;
+export default AdminCeoSalesChartBarChart8;

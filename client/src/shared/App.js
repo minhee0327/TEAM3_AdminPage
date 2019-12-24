@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Home, AdminCeoSalesAnalysis, CeoMain, AdminClientSalesAnalysis,ClientGeneralAnalysis,UserManagement,CeoManagement,BlacklistManagement} from 'pages';
+
+import { BlacklistManagement, Home, AdminCeoSalesAnalysis, CeoMain, AdminClientSalesAnalysis,ClientGeneralAnalysis,UserManagement,CeoManagement,Posts,AdminCeoSalesDetail,AdminCeoGeneralAnalysis,AdminCeoGeneralDetail} from 'pages';
+
 import Menu from 'components/Menu';
 
 
@@ -17,15 +19,23 @@ class App extends Component {
                 </Switch>
                 <hr/>
                 <div>
-                <Route exact path="/" component={Home}/>
                 <Route exact path="/adminCeoSalesAnalysis" component={AdminCeoSalesAnalysis}/>
                 <Route exact path="/AdminClientSalesAnalysis" component={AdminClientSalesAnalysis}/>
                 <Route exact path="/clientGeneralAnalysis" component={ClientGeneralAnalysis}/>
+
                 <Route path="/userManagement" component={UserManagement}/>
                 <Route path="/ceoManagement" component={CeoManagement}/>
                 <Route exact path="/blacklistManagement" component={BlacklistManagement}/>
-                </div>
+             
 
+                <Route exact path="/AdminCeoGeneralAnalysis" component={AdminCeoGeneralAnalysis}/>
+
+
+
+                <Route path="/posts" component={Posts}/>
+                <Route path="/adminCeoSalesDetail/:phone/:ceo" component={AdminCeoSalesDetail}/>
+                <Route path="/adminCeoGeneralDetail/:phone/:ceo" component={AdminCeoGeneralDetail}/>
+                </div>
             </div>
         );
     }

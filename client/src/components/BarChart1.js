@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Chart from "chart.js";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 class BarChart1 extends Component{
     chart = null;
@@ -24,7 +25,7 @@ class BarChart1 extends Component{
                     backgroundColor: 'rgba(255, 99, 132, 0.6)',
                     borderColor: 'rgba(255, 99, 132, 0.6)',
                     lineTension: 0,
-                    pointRadius: 0,
+                    pointRadius: 0
                 },
                 {
                     label: "환불액",
@@ -37,6 +38,9 @@ class BarChart1 extends Component{
                 }
                 ]
             },
+            plugins:[
+                ChartDataLabels
+            ],
             options:{
                 responsive: true,
                 title: {

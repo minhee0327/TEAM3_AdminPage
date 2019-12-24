@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Chart from "chart.js";
 
-class BarChart3 extends Component{
+class AdminGeneralChart1 extends Component{
     chart = null;
     //AdminClientSalesChart4에서 데이터 받아옵니다.
     //AdiminClientSalesAnalysis.js에 첫번째 그래프 출력정보입니다.
@@ -13,12 +13,12 @@ class BarChart3 extends Component{
         const {data, pair,data2} = this.props;
 
         const config = {
-            type:"bar",
+            type:"line",
             data: {
-                labels: ['3주','2주','1주'],
+                labels: data.map(d => d.date),
                 datasets: [
                 {
-                    label: "매출액",
+                    label: "회원가입자수",
                     data: data.map(d => d.value),
                     fill: false,
                     backgroundColor: 'rgba(255, 99, 132, 0.6)',
@@ -45,12 +45,13 @@ class BarChart3 extends Component{
                 },
                 tooltips: {
                     mode: "index",
-                    intersect: false,
+                    intersect: false
                 },
                 hover: {
                     mode: "nearest",
                     intersect: true
                 }
+                
             }
         };
         const ctx = this.canvas.getContext("2d");
@@ -74,8 +75,9 @@ class BarChart3 extends Component{
             <div className="">
                 <canvas ref = {ref => (this.canvas = ref)}/>
             </div>
+            
         );
     }
 }
 
-export default BarChart3;
+export default AdminGeneralChart1;
