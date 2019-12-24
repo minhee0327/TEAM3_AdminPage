@@ -18,7 +18,7 @@ const Menu = () => {
                         <li><NavLink exact to="/ceoManagement" activeStyle={activeStyle}>사장님계정</NavLink></li>
                         <li><NavLink exact to="/blacklistManagement" activeStyle={activeStyle}>블랙리스트 관리</NavLink></li>
                     </ul>
-                <li><NavLink exact to="/analysis" activeStyle={activeStyle}>분석</NavLink></li>
+                <li><NavLink exact to="/adminClientSalesAnalysis" activeStyle={activeStyle}>분석</NavLink></li>
                     <ul>
                         <li><NavLink exact to="/adminClientSalesAnalysis" activeStyle={activeStyle}>회원 매출 분석</NavLink></li>
                         <li><NavLink exact to="/adminCeoSalesAnalysis" activeStyle={activeStyle}>사장님 매출 분석</NavLink></li>

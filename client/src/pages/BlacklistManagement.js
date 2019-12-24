@@ -60,11 +60,6 @@ const styles = theme => ({
               },
 });
 
-
-
-
-
-
 class BlacklistManagement extends Component{
     constructor(props) {
     super(props);
@@ -156,7 +151,7 @@ class BlacklistManagement extends Component{
         <TableBody>
           {this.state.blacklistManagement ? filteredComponents(this.state.blacklistManagement) :
           <TableRow>
-            <TableCell colSpan="6" align ="center">
+            <TableCell colSpan="9" align ="center">
               <CircularProgress  variant="determinate" value={this.state.completed}/>
             </TableCell>
           </TableRow>

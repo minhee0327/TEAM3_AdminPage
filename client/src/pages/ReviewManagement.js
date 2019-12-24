@@ -107,7 +107,7 @@ class ReviewManagement extends Component {
   render() {
     const filteredComponents = (data) => {
       data = data.filter((c) => {
-        return c.review_content.indexOf(this.state.searchKeyword) > -1;
+        return c.user_id.indexOf(this.state.searchKeyword) > -1;
       });
       return data.map((c) => {
         return <AdminReviewTable stateRefresh={this.stateRefresh} show_title={c.show_title} user_id={c.user_id} review_content={c.review_content} />
@@ -124,7 +124,7 @@ class ReviewManagement extends Component {
             <SearchIcon />
           </div>
           <InputBase
-            placeholder="검색하기"
+            placeholder="id로 검색하기"
             classes={{
               root: classes.inputRoot,
               input: classes.inputInput,

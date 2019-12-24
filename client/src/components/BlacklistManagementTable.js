@@ -18,8 +18,6 @@ class BlacklistManagementTable extends Component{
                 <TableCell>{this.props.phone}</TableCell>
                 <TableCell>{this.props.delete_date}</TableCell>
                 <TableCell>{this.props.reason_content}</TableCell>
-                
-                
             </TableRow>
         )
     }

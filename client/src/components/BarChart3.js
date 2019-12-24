@@ -50,6 +50,13 @@ class BarChart3 extends Component{
                 hover: {
                     mode: "nearest",
                     intersect: true
+                },
+                plugins:{
+                    datalabels: {
+                        formatter : function(value,ctx){
+                            return null;
+                        }
+                    }
                 }
             }
         };

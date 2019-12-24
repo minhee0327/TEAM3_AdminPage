@@ -129,7 +129,7 @@ class CeoManagement extends Component{
                 <SearchIcon />
                 </div>
                 <InputBase
-                placeholder="검색하기"
+                placeholder="이름으로 검색하기"
                 classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,

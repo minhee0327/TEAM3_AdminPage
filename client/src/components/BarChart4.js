@@ -61,9 +61,8 @@ class BarChart4 extends Component{
                     intersect: true
                 },
                 //chartjs-plugin-datalabels : 값이 차트 맨 위에 뿌려질 수 있도록 하기.(모듈설치: https://chartjs-plugin-datalabels.netlify.com/guide/getting-started.html#configuration)
-                plugiins:{
+                plugins:{
                     color: '#36A2EB',
-                 
                 },
                 //(x,y축)설정 => API 참조.. 하다가 일단 넘어감(시간상)
                 scales:{
