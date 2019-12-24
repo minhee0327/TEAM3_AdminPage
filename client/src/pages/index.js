@@ -11,6 +11,7 @@ export { default as CeoMain } from './CeoMain';
 
 export { default as AdminCeoSalesDetail } from './AdminCeoSalesDetail';
 export { default as AdminCeoGeneralDetail } from './AdminCeoGeneralDetail';
+export { default as ReviewManagement } from './ReviewManagement';
 export { default as Post } from './Post';
 export { default as Posts } from './Posts';
 

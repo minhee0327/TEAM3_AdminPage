@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { BlacklistManagement, Home, AdminCeoSalesAnalysis, CeoMain, AdminClientSalesAnalysis,ClientGeneralAnalysis,UserManagement,CeoManagement,Posts,AdminCeoSalesDetail,AdminCeoGeneralAnalysis,AdminCeoGeneralDetail} from 'pages';
+import { ReviewManagement, BlacklistManagement, AdminCeoSalesAnalysis, CeoMain, AdminClientSalesAnalysis,ClientGeneralAnalysis,UserManagement,CeoManagement,Posts,AdminCeoSalesDetail,AdminCeoGeneralAnalysis,AdminCeoGeneralDetail} from 'pages';
 
 import Menu from 'components/Menu';
 
@@ -29,8 +29,7 @@ class App extends Component {
              
 
                 <Route exact path="/AdminCeoGeneralAnalysis" component={AdminCeoGeneralAnalysis}/>
-
-
+                <Route exact path="/ReviewManagement" component={ReviewManagement}/>
 
                 <Route path="/posts" component={Posts}/>
                 <Route path="/adminCeoSalesDetail/:phone/:ceo" component={AdminCeoSalesDetail}/>

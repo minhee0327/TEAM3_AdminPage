@@ -412,22 +412,27 @@ app.get('/api/test',(req,res,err) => {
     })
   });
 
+ //후기 관리 리스트
+ app.get('/api/reviewManagement',(req,res) => {
+  connection.query(
+    "select s.show_title, t.user_id, r.review_content, r.review_report_yn from ticketing t, review r, `show` s where t.ticketing_id = r.ticketing_id and s.show_id = t.show_id and review_report_yn = 1",
+    (err,rows,fields) => {
+      res.send(rows);
+    }
+  );
+});
 
-
-  /*
-  app.get('/api/clientSalesAnalysis',(req,res,err)=>{
-    connection.query('',(err,rows,fields) => {
-      if(err){
-        return res.send(err);
-      }else{
-        return res.send(rows);
-      }
+//후기 삭제
+app.delete('/api/reviewManagement/:user_id',(req, res) => {
+  let sql = 'delete from user where user_id = ?';
+  let params = [req.params.user_id];
+  connection.query(sql, params,
+    (err, rows, fields) => {
+      res.send(rows);
     })
-  })
-  */
- 
- // connection.end();
+});
 
+ // connection.end();
  //사장님 관리 리스트
  app.get('/api/ceoManagement',(req,res) => {
   connection.query(
@@ -461,7 +466,7 @@ app.get('/api/blacklistManagement',(req,res) => {
 
 
 //사장님 계정 삭제
-app.delete('/api/userManagement/:identification_number',(req, res) => {
+app.delete('/api/ceoManagement/:identification_number',(req, res) => {
   let sql = 'delete from user where identification_number = ?';
   let params = [req.params.identification_number];
   connection.query(sql, params,

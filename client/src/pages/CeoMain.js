@@ -1,5 +1,5 @@
 import React from 'react';
-import "./CeoMain.css";
+import "../css/CeoMain.css";
 
 const CeoMain = () => {
     return (

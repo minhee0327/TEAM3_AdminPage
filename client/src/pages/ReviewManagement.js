@@ -10,7 +10,7 @@ import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 
-import UserManagementTable from 'components/UserManagementTable'
+import AdminReviewTable from 'components/AdminReviewTable'
 
 const styles = theme => ({
   grow: {
@@ -59,11 +59,11 @@ const styles = theme => ({
   },
 });
 
-class UserManagement extends Component {
+class ReviewManagement extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userManagement: '',
+      reviewManagement: '',
       completed: 0,
       searchKeyword: ''
     }
@@ -72,23 +72,23 @@ class UserManagement extends Component {
 
   stateRefresh = () => {
     this.setState({
-      userManagement: '',
+      reviewManagement: '',
       completed: 0
     });
     this.callApi()
-      .then(res => this.setState({ userManagement: res }))
+      .then(res => this.setState({ reviewManagement: res }))
       .catch(err => console.log(err));
   }
 
   componentDidMount() {
     this.timer = setInterval(this.progress, 20);
     this.callApi()
-      .then(res => this.setState({ userManagement: res }))
+      .then(res => this.setState({ reviewManagement: res }))
       .catch(err => console.log(err));
   }
 
   callApi = async () => {
-    const response = await fetch('/api/userManagement');
+    const response = await fetch('/api/reviewManagement');
     const body = await response.json();
     return body;
   }
@@ -107,19 +107,17 @@ class UserManagement extends Component {
   render() {
     const filteredComponents = (data) => {
       data = data.filter((c) => {
-        return c.name.indexOf(this.state.searchKeyword) > -1;
+        return c.review_content.indexOf(this.state.searchKeyword) > -1;
       });
       return data.map((c) => {
-        return <UserManagementTable stateRefresh={this.stateRefresh} user_id={c.user_id} name={c.name} identification_number={c.identification_number} email={c.email} funnel_name={c.funnel_name} />
+        return <AdminReviewTable stateRefresh={this.stateRefresh} show_title={c.show_title} user_id={c.user_id} review_content={c.review_content} />
       })
     }
     const { classes } = this.props;
-    const cellList = ["ID", "이름", "주민등록번호", "E-mail", "유입경로", "블랙리스트"]
+    const cellList = ["상영작","user_id","content","삭제"]
 
     return (
       <div className={classes.root}>
-
-
         <div className={classes.grow} />
         <div className={classes.search}>
           <div className={classes.searchIcon}>
@@ -147,9 +145,9 @@ class UserManagement extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.state.userManagement ? filteredComponents(this.state.userManagement) :
+              {this.state.reviewManagement ? filteredComponents(this.state.reviewManagement) :
                 <TableRow>
-                  <TableCell colSpan="6" align="center">
+                  <TableCell colSpan="4" align="center">
                     <CircularProgress variant="determinate" value={this.state.completed} />
                   </TableCell>
                 </TableRow>
@@ -162,4 +160,4 @@ class UserManagement extends Component {
   };
 }
 
-export default withStyles(styles)(UserManagement);
+export default withStyles(styles)(ReviewManagement);
