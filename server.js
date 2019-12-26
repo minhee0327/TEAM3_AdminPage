@@ -1,11 +1,26 @@
 const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
+//const  router = express.Router();
+
+//const router = require('router');
+//const http = require('http');
 const app = express();
 const cors = require("cors");
 const port = process.env.PORT || 5000;
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended:true }));
+
+const parser = bodyParser.json();
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(parser);
+/*
+app.use(function(req,res,next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
+  next();
+})
+*/
+//app.use(bodyParser.json());
+//app.use(app.router);
 
 const data = fs.readFileSync('./database.json');
 const conf = JSON.parse(data);
@@ -14,6 +29,8 @@ const mysql = require('mysql');
 const multer = require('multer');
 //const upload = multer({dest: './upload'})
 const selectAll = "SELECT * FROM user";
+
+
 
 const connection = mysql.createConnection({
   host: conf.host,
@@ -274,7 +291,10 @@ app.get('/api/test',(req,res,err) => {
 
   //사장님 분석 > 클릭시 상세보기 > 가입 후 연간 총 매출액
   app.get('/adminCeoSalesDetail2/:phone',(req,res,err)=>{
-    let sql = 'select sum(T.price) as sum from ticketing T, `show` S, Troup TR, user U where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone =? and year(T.ticketing_date) = year(sysdate()) group by TR.troup_name';
+    let sql = 'select sum(T.price) as sum from ticketing T, '
+    +'`show` S, Troup TR, user U where T.show_id=S.show_id and '
+    +'S.troup_id = TR.troup_id and TR.user_id = U.user_id and '
+    +'U.phone =? and year(T.ticketing_date) = year(sysdate()) group by TR.troup_name';
     let params = [req.params.phone];
     connection.query(sql,params,(err,rows,fields) => {
       if(err){
@@ -476,36 +496,39 @@ app.delete('/api/ceoManagement/:identification_number',(req, res) => {
     });
     
     //블랙리스트 관리
+    
+    app.post('/api/blacklistManagement',parser,(req,res)=>{
+      let sql = "INSERT INTO `blacklist` VALUES (?,?,?,?,?,?,?,?)";
+      
+      let blacklist_id = req.body.blacklist_id;
+      let user_id = req.body.user_id;
+      let reason_id = req.body.reason_id;
+      let name = req.body.name;
+      let email = req.body.email;
+      let role = req.body.role;
+      let phone = req.body.phone;
+      let delete_date = req.body.delete_date;
+      //console.log(req);
+      //console.log(req.body);
+      let params = [blacklist_id, user_id, reason_id, name, email, role, phone, delete_date];
+      //console.log(blacklist_id);
+     // console.log(params);
+     
+     connection.query(sql,params,
+      (err, rows, fields) => { 
+        res.send(rows);
+        console.log(err);
+      }       
+      )
+    });
+    
     app.get('/api/blacklistManagement',(req,res) => {
       connection.query(
-        "select b.blacklist_id, b.user_id, b.reason_id, b.name, b.email, b.role, b.phone, b.delete_date, r.reason_content from blacklist b, reason r where b.reason_id = r.reason_id",
+        "select b.blacklist_id, b.user_id, b.reason_id, b.name, b.email, b.role, b.phone, b.delete_date, r.reason_content from blacklist b, reason r where b.reason_id = r.reason_id order by blacklist_id desc",
         (err,rows,fields) => {
           res.send(rows);
         }
       );
       });
-
-  //블랙리스트 등록
-  app.post('/api/blacklistManagement',(req,res)=>{
-    let sql = 'INSERT INTO blacklist VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-    
-    let blacklist_id = req.body.blacklist_id;
-    let user_id = req.body.user_id;
-    let reason_id = req.body.reason_id;
-    let name = req.body.name;
-    let email = req.body.email;
-    let role = req.body.role;
-    let phone = req.body.phone;
-    let delete_date = req.body.delete_date;
-    let params = [blacklist_id, user_id, reason_id, name, email, role, phone, delete_date];
-    
-    connection.query(sql, params,
-          (err, rows, fields) => { 
-            res.send(rows);
-          }       
-        )
-  });
-
-
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

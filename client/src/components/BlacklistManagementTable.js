@@ -2,9 +2,6 @@ import React,{ Component } from 'react';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 
-
-
-
 class BlacklistManagementTable extends Component{
     render() {
         return (
