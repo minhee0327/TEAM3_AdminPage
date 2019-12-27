@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import { ReviewManagement, BlacklistManagement, AdminCeoSalesAnalysis, CeoMain, AdminClientSalesAnalysis,ClientGeneralAnalysis,UserManagement,CeoManagement,Posts,AdminCeoSalesDetail,AdminCeoGeneralAnalysis,AdminCeoGeneralDetail} from 'pages';
 
 import Menu from 'components/Menu';
-
+import '../css/Menu.css';
 
 class App extends Component {
 
@@ -17,8 +17,8 @@ class App extends Component {
                 <Menu/>
                 </div>
                 </Switch>
-                <hr/>
-                <div>
+                
+                <div className="main">
                 <Route exact path="/adminCeoSalesAnalysis" component={AdminCeoSalesAnalysis}/>
                 <Route exact path="/AdminClientSalesAnalysis" component={AdminClientSalesAnalysis}/>
                 <Route exact path="/clientGeneralAnalysis" component={ClientGeneralAnalysis}/>
@@ -26,7 +26,7 @@ class App extends Component {
                 <Route path="/userManagement" component={UserManagement}/>
                 <Route path="/ceoManagement" component={CeoManagement}/>
                 <Route exact path="/blacklistManagement" component={BlacklistManagement}/>
-             
+                
 
                 <Route exact path="/AdminCeoGeneralAnalysis" component={AdminCeoGeneralAnalysis}/>
                 <Route exact path="/ReviewManagement" component={ReviewManagement}/>

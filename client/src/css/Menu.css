@@ -1,0 +1,30 @@
+.sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(34, 30, 30);
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  
+.main {
+    margin-left: 270px; /* Same as the width of the sidenav */
+    font-size: 20px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+  }
+
+.sidenav a {
+    color: white;
+
+}
+
+.sidenav>ul{
+  padding-top: 120px;
+}
+.sidenav li {
+  padding: 5px;
+}

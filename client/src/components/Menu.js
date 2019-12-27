@@ -1,15 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
+import '../css/Menu.css';
 
 const Menu = () => {
     const activeStyle = {
         color: 'green',
-        // fontSize: '2rem'
+        //fontSize: '1.2rem'
     };
 
     return (
-        <div>
+        <div className="sidenav">
             <ul>
                 <li><NavLink exact to="/CeoMain" activeStyle={activeStyle}>샘플테스트</NavLink></li>
                 <li><NavLink exact to="/UserManagement" activeStyle={activeStyle}>계정관리</NavLink></li>
@@ -24,6 +24,7 @@ const Menu = () => {
                         <li><NavLink exact to="/adminCeoSalesAnalysis" activeStyle={activeStyle}>사장님 매출 분석</NavLink></li>
                         <li><NavLink exact to="/clientGeneralAnalysis" activeStyle={activeStyle}>회원 분석</NavLink></li>
                         <li><NavLink exact to="/adminCeoGeneralAnalysis" activeStyle={activeStyle}>사장님 분석</NavLink></li>
+                    
                     </ul>
                 <li><NavLink exact to="/ReviewManagement" activeStyle={activeStyle}>후기관리</NavLink></li>
             </ul>
