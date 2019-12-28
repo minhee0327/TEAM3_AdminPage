@@ -20,10 +20,11 @@ const styles = theme => ({
   search: {
       position: 'relative',
       borderRadius: theme.shape.borderRadius,
-      backgroundColor: fade(theme.palette.common.white, 0.15),
+      backgroundColor: fade('#e0e0e0', 0.25),
       '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: fade('#bdbdbd', 0.27),
       },
+      float:'right',
       marginLeft: 0,
       width: '100%',
       [theme.breakpoints.up('sm')]: {
@@ -111,16 +112,15 @@ class BlacklistManagement extends Component{
          return c.name.indexOf(this.state.searchKeyword) > -1;
        });
       return data.map((c) => {
-        return <BlacklistManagementTable stateRefresh={this.stateRefresh} blacklist_id={c.blacklist_id} user_id={c.user_id} reason_id={c.reason_id} name={c.name} email={c.email} role={c.role} phone={c.phone} delete_date={c.delete_date} reason_content={c.reason_content}/>
+        return <BlacklistManagementTable stateRefresh={this.stateRefresh} blacklist_id={c.blacklist_id} user_id={c.user_id} name={c.name} email={c.email} phone={c.phone} delete_date={c.delete_date} reason_content={c.reason_content}/>
       });
     }
     const { classes } = this.props;
-    const cellList = ["Number", "ID","이유번호", "이름", "E-mail", "역할", "전화번호",  "삭제날짜", "삭제사유"]
+    const cellList = ["Number", "ID", "이름", "E-mail","전화번호",  "삭제날짜", "삭제사유"]
 
     return (
       <div className={classes.root}>
-         
-        <BlacklistManagementAdd stateRefresh={this.stateRefresh}/>
+         <h3>블랙리스트 관리 </h3>
 
                 <div className={classes.grow} />
                 <div className={classes.search}>
@@ -130,8 +130,8 @@ class BlacklistManagement extends Component{
                 <InputBase
                 placeholder="검색하기"
                 classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
                 }}
                 name = "searchKeyword"
                 value={this.state.searchKeyword}
@@ -139,6 +139,7 @@ class BlacklistManagement extends Component{
                 />
                 </div>
         
+                <BlacklistManagementAdd stateRefresh={this.stateRefresh}/>
         <Container class="blacklist_management_table">
         <Table >
         <TableHead>

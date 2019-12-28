@@ -8,10 +8,8 @@ class BlacklistManagementTable extends Component{
             <TableRow>
                 <TableCell>{this.props.blacklist_id}</TableCell>
                 <TableCell>{this.props.user_id}</TableCell>
-                <TableCell>{this.props.reason_id}</TableCell>
                 <TableCell>{this.props.name}</TableCell>
                 <TableCell>{this.props.email}</TableCell>
-                <TableCell>{this.props.role}</TableCell>
                 <TableCell>{this.props.phone}</TableCell>
                 <TableCell>{this.props.delete_date}</TableCell>
                 <TableCell>{this.props.reason_content}</TableCell>

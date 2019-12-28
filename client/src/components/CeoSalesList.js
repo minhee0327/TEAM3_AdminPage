@@ -15,6 +15,7 @@ class Customer extends React.Component{
 
     render(){
         return(
+            
             <div>
             <TableRow>
                 <TableCell>{this.props.극단이름}</TableCell>

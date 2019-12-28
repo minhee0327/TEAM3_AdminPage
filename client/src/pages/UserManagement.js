@@ -19,9 +19,9 @@ const styles = theme => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    backgroundColor: fade('#e0e0e0', 0.25),
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: fade('#bdbdbd', 0.27),
     },
     marginLeft: 0,
     width: '100%',
@@ -29,6 +29,7 @@ const styles = theme => ({
       marginLeft: theme.spacing.unit,
       width: 'auto',
     },
+    float:'right'
   },
   searchIcon: {
     width: theme.spacing.unit * 9,
@@ -44,6 +45,7 @@ const styles = theme => ({
     width: '100%',
   },
   inputInput: {
+
     paddingTop: theme.spacing.unit,
     paddingRight: theme.spacing.unit,
     paddingBottom: theme.spacing.unit,
@@ -119,14 +121,14 @@ class UserManagement extends Component {
     return (
       <div className={classes.root}>
 
-
+      <h3>회원 계정</h3>
         <div className={classes.grow} />
         <div className={classes.search}>
           <div className={classes.searchIcon}>
             <SearchIcon />
           </div>
           <InputBase
-            placeholder="이름으로 검색하기"
+            placeholder="이름 검색"
             classes={{
               root: classes.inputRoot,
               input: classes.inputInput,

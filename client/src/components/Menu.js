@@ -4,7 +4,7 @@ import '../css/Menu.css';
 
 const Menu = () => {
     const activeStyle = {
-        color: 'green',
+        color: 'white',
         //fontSize: '1.2rem'
     };
 
