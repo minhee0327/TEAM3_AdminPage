@@ -8,9 +8,12 @@ module.exports = db.sequelize.define(
       type: Sequelize.STRING,
       primaryKey: true
     },
+    funnel_id: {
+      type: Sequelize.INTEGER
+    },
     password: {
       type: Sequelize.STRING
-    },
+    }
   },
   {
     tableName: 'user',

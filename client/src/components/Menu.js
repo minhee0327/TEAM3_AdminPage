@@ -11,7 +11,7 @@ const Menu = () => {
     return (
         <div className="sidenav">
             <ul>
-                {/* <li><NavLink exact to="/login" activeStyle={activeStyle}>로그인</NavLink></li> */}
+                <li><NavLink exact to="/login" activeStyle={activeStyle}>로그아웃</NavLink></li>
                 <li><NavLink exact to="/UserManagement" activeStyle={activeStyle}>계정관리</NavLink></li>
                     <ul>
                         <li><NavLink exact to="/userManagement" activeStyle={activeStyle}>회원계정</NavLink></li>

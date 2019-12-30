@@ -13,7 +13,7 @@ class Navbar extends Component {
       <ul className="navbar-nav">
         <li className="nav-item">
           <Link to="/login" className="nav-link">
-            Login
+            Login 
           </Link>
         </li>
         <li className="nav-item">
@@ -28,7 +28,7 @@ class Navbar extends Component {
       <ul className="navbar-nav">
         <li className="nav-item">
           <Link to="/profile" className="nav-link">
-            User
+            Admin
           </Link>
         </li>
         <li className="nav-item">

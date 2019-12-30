@@ -37,14 +37,18 @@ user.post('/login', (req, res) => {
 //Register & Profile은 쓸일 없지만 일단 살려둠
 user.post('/register', (req, res) => {
   //const today = new Date().toDateString()
+  
   const userData = {
     user_id: req.body.user_id,
+    funnel_id: req.body.funnel_id,
     password: req.body.password
   }
+  //console.log(req.body)
 
   User.findOne({
     where: {
       user_id: req.body.user_id
+      //funnel_id: req.body.funnel_id
     }
   })
     //TODO bcrypt
@@ -52,6 +56,7 @@ user.post('/register', (req, res) => {
       if (!user) {
         bcrypt.hash(req.body.password, 10, (err, hash) => {
           userData.password = hash
+          //console.log(userData)
           User.create(userData)
             .then(user => {
               res.json({ status: user.user_id + 'Registered!' })

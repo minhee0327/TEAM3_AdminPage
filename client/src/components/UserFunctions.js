@@ -5,7 +5,8 @@ export const register = newUser => {
     return axios
       .post('api/register', {
         user_id: newUser.user_id,
-        password: newUser.password
+        password: newUser.password,
+        funnel_id: newUser.funnel_id
       })
       .then(response => {
         console.log('Registered')

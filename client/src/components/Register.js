@@ -6,6 +6,7 @@ class Register extends Component {
         super()
         this.state = {
           user_id: '',
+          funnel_id: '',
           password: '',
           errors: {}
         }
@@ -21,12 +22,14 @@ class Register extends Component {
     
         const newUser = {
           user_id: this.state.user_id,
-          password: this.state.password
+          funnel_id: this.state.funnel_id,
+          password: this.state.password,
         }
-    
+        console.log(this.state.funnel_id)
         register(newUser).then(res => {
           if (res) {
-            this.props.history.push('/login')
+            this.props.history.push(`/login`);
+            //alert('회원가입완료');
           }
         })
       }
@@ -57,6 +60,17 @@ class Register extends Component {
                       name="password"
                       placeholder="Password"
                       value={this.state.password}
+                      onChange={this.onChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="funnel_id">funnel_id</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="funnel_id"
+                      placeholder="funnel_id"
+                      value={this.state.funnel_id}
                       onChange={this.onChange}
                     />
                   </div>
