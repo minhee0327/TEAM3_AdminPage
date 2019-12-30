@@ -11,7 +11,7 @@ const Menu = () => {
     return (
         <div className="sidenav">
             <ul>
-                <li><NavLink exact to="/CeoMain" activeStyle={activeStyle}>샘플테스트</NavLink></li>
+                {/* <li><NavLink exact to="/login" activeStyle={activeStyle}>로그인</NavLink></li> */}
                 <li><NavLink exact to="/UserManagement" activeStyle={activeStyle}>계정관리</NavLink></li>
                     <ul>
                         <li><NavLink exact to="/userManagement" activeStyle={activeStyle}>회원계정</NavLink></li>
@@ -23,7 +23,7 @@ const Menu = () => {
                         <li><NavLink exact to="/adminClientSalesAnalysis" activeStyle={activeStyle}>회원 매출 분석</NavLink></li>
                         <li><NavLink exact to="/adminCeoSalesAnalysis" activeStyle={activeStyle}>사장님 매출 분석</NavLink></li>
                         <li><NavLink exact to="/clientGeneralAnalysis" activeStyle={activeStyle}>회원 분석</NavLink></li>
-                        <li><NavLink exact to="/adminCeoGeneralAnalysis" activeStyle={activeStyle}>사장님 분석</NavLink></li>
+                        {/* <li><NavLink exact to="/adminCeoGeneralAnalysis" activeStyle={activeStyle}>사장님 분석</NavLink></li> */}
                     
                     </ul>
                 <li><NavLink exact to="/ReviewManagement" activeStyle={activeStyle}>후기관리</NavLink></li>

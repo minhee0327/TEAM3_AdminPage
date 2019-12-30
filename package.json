@@ -1,6 +1,7 @@
 {
   "name": "adminpage",
   "version": "0.1.0",
+  "main":"server.js",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -19,7 +20,11 @@
     "react-charts": "^2.0.0-beta.6",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
-    "yarn": "^1.21.1"
+    "yarn": "^1.21.1",
+    "bcrypt": "3.0.0",
+    "jsonwebtoken": "^7.4.2",
+    "mysql2": "^1.6.1",
+    "sequelize": "^4.38.0"
   },
   "scripts": {
     "client": "cd client && yarn start",

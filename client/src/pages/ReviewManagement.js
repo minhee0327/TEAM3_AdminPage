@@ -19,10 +19,11 @@ const styles = theme => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    backgroundColor: fade('#e0e0e0', 0.25),
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: fade('#bdbdbd', 0.27),
     },
+    float: 'right',
     marginLeft: 0,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
@@ -118,6 +119,7 @@ class ReviewManagement extends Component {
 
     return (
       <div className={classes.root}>
+        <h3>후기관리</h3>
         <div className={classes.grow} />
         <div className={classes.search}>
           <div className={classes.searchIcon}>

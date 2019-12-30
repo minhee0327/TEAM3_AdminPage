@@ -1,26 +1,14 @@
 const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
-//const  router = express.Router();
-
-//const router = require('router');
-//const http = require('http');
 const app = express();
-const cors = require("cors");
+const cors = require('cors');
 const port = process.env.PORT || 5000;
 
 const parser = bodyParser.json();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(parser);
-/*
-app.use(function(req,res,next){
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
-  next();
-})
-*/
-//app.use(bodyParser.json());
-//app.use(app.router);
+app.use(cors())
 
 const data = fs.readFileSync('./database.json');
 const conf = JSON.parse(data);
@@ -30,8 +18,11 @@ const multer = require('multer');
 //const upload = multer({dest: './upload'})
 const selectAll = "SELECT * FROM user";
 
+//Login 구현 위한 코드
+var Users = require('./routes/Users')
+app.use('/api',Users)
 
-
+//서버 연결 코드
 const connection = mysql.createConnection({
   host: conf.host,
   user: conf.user,
@@ -40,6 +31,7 @@ const connection = mysql.createConnection({
   database: conf.database
 });
 
+//connection 성공시 뿌려줄 멘트
 connection.connect(err => {
   if(err){
     console.log(err);
@@ -50,11 +42,16 @@ connection.connect(err => {
 
 
 app.use(cors());
+//Login Test 용도
+app.get('/hello', (req, res) => {
+  return res.send('Hello CodeLab');
+});
 
 //서버 연결 잘 되었는지 확인하는 용도
 app.get('/',(req,res,err) => {
   res.send(`hello from the products server`);
 });
+
 
 //user 게시판 (test용도) => 마지막에 파기해도 괜찮을 것 같다.
 app.get('/api/test',(req,res,err) => {
@@ -473,8 +470,6 @@ connection.query(
 );
 });
 
-
-
 //사장님 계정 삭제
 app.delete('/api/ceoManagement/:identification_number',(req, res) => {
   let sql = 'delete from user where identification_number = ?';
@@ -495,8 +490,7 @@ app.delete('/api/ceoManagement/:identification_number',(req, res) => {
       })
     });
     
-    //블랙리스트 관리
-    
+    //블랙리스트 관리(등록)
     app.post('/api/blacklistManagement',parser,(req,res)=>{
       let sql = "INSERT INTO `blacklist` VALUES (?,?,?,?,?,?,?,?)";
       
@@ -521,7 +515,7 @@ app.delete('/api/ceoManagement/:identification_number',(req, res) => {
       }       
       )
     });
-    
+    //블랙리스트 목록
     app.get('/api/blacklistManagement',(req,res) => {
       connection.query(
         "select b.blacklist_id, b.user_id, b.reason_id, b.name, b.email, b.role, b.phone, b.delete_date, r.reason_content from blacklist b, reason r where b.reason_id = r.reason_id order by blacklist_id desc",
