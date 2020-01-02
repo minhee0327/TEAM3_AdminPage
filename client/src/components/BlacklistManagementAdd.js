@@ -1,5 +1,5 @@
 import React from 'react';
-import { post } from 'axios';
+//import { post } from 'axios';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -38,6 +38,7 @@ class BlacklistManagementAdd extends React.Component {
             delete_date:'',
             open: false
         })
+        this.props.stateRefresh();
        // window.location.reload();
     }
     handleValueChange = (e) => {
@@ -78,35 +79,6 @@ class BlacklistManagementAdd extends React.Component {
         })
     }
 
-    addBlacklist = () => {
-        const url = '/api/blacklistManagement';
-        const formData = new FormData();
-        formData.append('blacklist_id', this.state.blacklist_id)
-        formData.append('user_id', this.state.user_id)
-        formData.append('reason_id', this.state.reason_id)
-        formData.append('name', this.state.name)
-        formData.append('email', this.state.email)
-        formData.append('role', this.state.role)
-        formData.append('phone', this.state.phone)
-        formData.append('delete_date', this.state.delete_date)
-     
-        console.log(this.state.blacklist_id);
-        for (var key of formData.keys()) {
-            console.log(key);
-          }
-          for (var value of formData.values()) {
-            console.log(value);
-          }
-          
-        const config = {
-            headers:{
-                'Content-Type':'application/json'
-            }
-        }
-        return post(url, formData, config);
-        
-       //return post(url, formData)
-    }
     handleClickOpen = () => {
         this.setState({
             open: true

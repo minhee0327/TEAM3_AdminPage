@@ -75,6 +75,9 @@ class CeoManagement extends Component{
   }
 
   stateRefresh = () => {
+
+    console.log('stateRefresh()');
+
     this.setState({
       ceoManagement:'',
       completed:0,
@@ -84,32 +87,54 @@ class CeoManagement extends Component{
     .then(res => this.setState({ceoManagement: res}))
     .catch(err => console.log(err));
   }
-
+  
   componentDidMount(){
-    this.timer = setInterval(this.progress, 20);
+    
+    console.log('componentDidMount()');
+    
+    //this.timer = setInterval(this.progress, 5000);
     this.callApi()
     .then(res => this.setState({ceoManagement: res}))
     .catch(err => console.log(err));
+    console.log('1ceoManager 있는지 =>', this.state.ceoManagement)
   }
-
+  
   callApi = async() => {
+    
+    console.log('callApi()');
+    
     const response = await fetch('/api/ceoManagement');
     const body = await response.json();
+    
     return body;
   }
 
   progress = () => {
+
+    console.log('progress()');
+
     const {completed} = this.state;
     this.setState({completed: completed >= 100 ? 0 : completed +1});
   };
 
   handleValueChange =(e) =>{
+
+    console.log('handleValueChange()');
+
     let nextState = {}
     nextState[e.target.name] = e.target.value;
     this.setState(nextState);
+    
   }
 
   render(){
+
+    //console.log('render()');
+    //console.log('0번째 name', this.state.ceoManagement[0]['name']);
+
+    //if(this.state.ceoManagement[0])
+    //console.log(this.state.ceoManagement[0]['troup_name'])
+    
     const filteredComponents = (data) =>{
        data = data.filter((c) => {
          return c.name.indexOf(this.state.searchKeyword) > -1;
@@ -120,19 +145,28 @@ class CeoManagement extends Component{
     }
     const { classes } = this.props;
     const cellList = ["극단명", "ID", "이름", "E-mail", "사업자번호", "삭제"]
+    //const {ceoManagement} = this.state;
     
-    return (
-      <div className={classes.root}>
+    //let a;
+    //if(this.state.ceoManagement){
+    //a = this.state.ceoManagement[0]['troup_name']
+  //}
 
+  //console.log(a)
+    return (
+     
+      <div className={classes.root}>
+              
                 <h3>사장님 계정</h3>
                 <div className={classes.grow} />
                 <div className={classes.search}>
                 <div className={classes.searchIcon}>
                 <SearchIcon />
-
                 </div>
+              
+                {/* placeholder={a} */}
                 <InputBase
-                placeholder="이름 검색"
+                placeholder = "이름 검색"
                 classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
@@ -140,6 +174,7 @@ class CeoManagement extends Component{
                 name = "searchKeyword"
                 value={this.state.searchKeyword}
                 onChange={this.handleValueChange}
+                
                 />
                 </div>
 

@@ -9,9 +9,9 @@ import '../css/ClientGeneralAnalysis.css'
 class ClientGeneralAnalysis extends Component{
 render(){
     return(
-        <div>
+        <div className="contents">
             <h3>회원 분석</h3>
-            <div className="all-chart">
+            <div className="general-all-chart">
                 <div className="user-genre">
                     <div className="user">
                         <AdminClientGeneralChart1/>

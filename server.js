@@ -276,7 +276,7 @@ app.get('/api/test',(req,res,err) => {
   app.get('/adminCeoSalesDetail/:phone',(req,res,err)=>{
     let sql = 'select sum(T.price) as sum from ticketing T, `show` S, Troup TR, user U where T.show_id=S.show_id and S.troup_id = TR.troup_id and TR.user_id = U.user_id and U.phone =? group by TR.troup_name';
     let params = [req.params.phone];
-    //console.log(params);
+    console.log(params);
     connection.query(sql,params,(err,rows,fields) => {
       if(err){
         return res.send(err);

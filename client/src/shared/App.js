@@ -8,7 +8,7 @@ import '../css/Menu.css';
 import Login from '../components/Login';
 import Profile from '../components/Profile';
 import Register from '../components/Register';
-import Navbar from'../components/Navbar';
+
 
 
 class App extends Component {
@@ -18,13 +18,13 @@ class App extends Component {
             <div>
                 <Switch>
                 <Route path="/login" component={Login}/>
-                <Route exact path="/" component={Login}/>
+                <Route path="/register" component={Register}/>
                 <div>
                 <Menu/>
                 </div>
                 </Switch>              
+                <Route exact path="/" component={UserManagement}/>
                 <Route path="/profile" component={Profile}/>
-                <Route path="/register" component={Register}/>
                 <div className="main">
                 <Route path="/userManagement" component={UserManagement}/>
                 <Route path="/ceoManagement" component={CeoManagement}/>

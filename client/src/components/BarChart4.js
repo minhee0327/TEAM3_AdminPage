@@ -62,7 +62,11 @@ class BarChart4 extends Component{
                 },
                 //chartjs-plugin-datalabels : 값이 차트 맨 위에 뿌려질 수 있도록 하기.(모듈설치: https://chartjs-plugin-datalabels.netlify.com/guide/getting-started.html#configuration)
                 plugins:{
-                    color: '#36A2EB',
+                    datalabels: {
+                        formatter : function(value,ctx){
+                            return null;
+                        }
+                    }
                 },
                 //(x,y축)설정 => API 참조.. 하다가 일단 넘어감(시간상)
                 scales:{
@@ -77,7 +81,10 @@ class BarChart4 extends Component{
                     }],
                     yAxes: [{
                         display: true,
-                        
+                        ticks: {
+                            scaleBeginAtZero : true,
+                            beginAtZero: true
+                        }
                     }]
                 }
                 

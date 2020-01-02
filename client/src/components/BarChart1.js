@@ -61,6 +61,24 @@ class BarChart1 extends Component{
                             return null;
                         }
                     }
+                },
+                scales:{
+                    xAxes:[{
+                        display: true,
+                        /*
+                        id:'newId',
+                        gridLines:{
+                            lineWidth:0
+                        }
+                        */
+                    }],
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            scaleBeginAtZero : true,
+                            beginAtZero: true
+                        }
+                    }]
                 }
             }
         };

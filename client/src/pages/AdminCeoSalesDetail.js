@@ -15,7 +15,7 @@ const AdminCeoSalesDetail =({match}) => {
         <div>
             {/* <h3>{match.params.phone} 사장님 매출분석 </h3> */}
             <h3>{match.params.ceo} 사장님의 매출 분석</h3>
-            <div>
+            <div className="detail-total-value">
             <AdminCeoSalesChart1 phone={match.params.phone} ceo={match.params.ceo}/>
             <AdminCeoSalesChart2 phone={match.params.phone} ceo={match.params.ceo}/>
             <AdminCeoSalesChart3 phone={match.params.phone} ceo={match.params.ceo}/>

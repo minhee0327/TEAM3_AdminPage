@@ -82,7 +82,7 @@ class BlacklistManagement extends Component{
     .catch(err => console.log(err));
   }
 
-  componentDidMount(){
+  componentDidMount=()=>{
     this.timer = setInterval(this.progress, 20);
     this.callApi()
     .then(res => this.setState({blacklistManagement: res}))
