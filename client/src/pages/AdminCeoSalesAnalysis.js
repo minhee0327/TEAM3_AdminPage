@@ -134,11 +134,9 @@ class  AdminCeoSalesAnalysis extends Component{
             <Table >
             <TableHead>
               <TableRow>
-                <div>
                 {cellList.map(c => {
                   return <TableCell key={c.toString()}>{c}</TableCell>
                 })}
-                </div>
               </TableRow>
             </TableHead>
             <TableBody>

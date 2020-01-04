@@ -15,8 +15,7 @@ class Customer extends React.Component{
 
     render(){
         return(
-            
-            <div>
+            <React.Fragment>
             <TableRow>
                 <TableCell>{this.props.극단이름}</TableCell>
                 <TableCell onClick={this.handleClick}><Link to = {`/adminCeoSalesDetail/${this.props.연락처}/${this.props.사장님}`}>{this.props.사장님}</Link></TableCell>
@@ -24,7 +23,7 @@ class Customer extends React.Component{
                 <TableCell>{this.props.극단별총매출}</TableCell>
             </TableRow>
             <Route path ="/adminCeoSalesDetail/:phone" component={AdminCeoSalesDetail}></Route>
-            </div>
+            </React.Fragment>
         )
     }
 }

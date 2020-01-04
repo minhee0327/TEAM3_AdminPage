@@ -186,7 +186,7 @@ app.get('/api/test',(req,res,err) => {
 
   //회원 매출 분석 > 일간 환불
   app.get('/api/clientSalesDailyRefundAnalysis',(req,res,err)=>{
-    connection.query('select DATE(refund_apply_date) as dd , sum(price) as sum from ticketing where DATE(refund_apply_date) between DATE(now())-2 and DATE(now()) group by DATE(refund_apply_date) order by dd',
+    connection.query('select DATE(refund_apply_date) as dd , count(refund_apply_date) as sum  from ticketing where DATE(refund_apply_date) between DATE(now())-2 and DATE(now()) group by DATE(refund_apply_date) order by dd',
     (err,rows,fields) => {
       if(err){
         return res.send(err);
@@ -198,7 +198,7 @@ app.get('/api/test',(req,res,err) => {
 
   //회원분석 > 회원가입률
   app.get('/api/userCount',(req,res,err)=>{
-    connection.query('select count(join_date) as users, date_format(join_date,"%Y-%m") as joindate from user where date_format(join_date,"%Y")= date_format(now(),"%Y") group by joindate order by join_date',(err,rows,fields) => {
+    connection.query('select count(join_date) as users, date_format(join_date,"%Y-%m") as joindate from user where date_format(join_date,"%Y")= date_format(now(),"%Y") or date_format(join_date,"%Y"-1)=date_format(now(),"%Y"-1) group by joindate order by join_date',(err,rows,fields) => {
       if(err){
         return res.send(err);
       }else{
@@ -209,7 +209,7 @@ app.get('/api/test',(req,res,err) => {
 
   //회원분석 > 강퇴수(블랙리스트수)
   app.get('/api/userBlacklist',(req,res,err)=>{
-    connection.query('select count(delete_date) as blacklist, date_format(delete_date,"%Y-%m") as deletedate from blacklist where date_format(delete_date,"%Y") = date_format(now(),"%Y") group by deletedate order by delete_date',(err,rows,fields) => {
+    connection.query('select count(delete_date) as blacklist, date_format(delete_date,"%Y-%m") as deletedate from blacklist where date_format(delete_date,"%Y") = date_format(now(),"%Y") OR date_format(delete_date,"%Y"-1)=date_format(now(),"%Y"-1) group by deletedate  order by delete_date',(err,rows,fields) => {
       if(err){
         return res.send(err);
       }else{
