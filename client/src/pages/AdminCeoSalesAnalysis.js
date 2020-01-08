@@ -88,6 +88,8 @@ class  AdminCeoSalesAnalysis extends Component{
     
       callApi = async() => {
         const response = await fetch('/api/AdminCeoSales');
+        console.log(response);
+        console.log(response.data);
         const body = await response.json();
         return body;
       }

@@ -11,7 +11,6 @@ class AdminGeneralChart3 extends Component{
             this.chart = null;
         }
         const {data, pair} = this.props;
-
         const config = {
             type:"pie",
             data: {

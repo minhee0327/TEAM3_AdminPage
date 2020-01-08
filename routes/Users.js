@@ -3,10 +3,8 @@ const user = express.Router()
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-
 const User = require('../models/User')
 user.use(cors())
-
 process.env.SECRET_KEY = 'secret'
 
 user.post('/login', (req, res) => {
@@ -14,8 +12,7 @@ user.post('/login', (req, res) => {
     where: {
       user_id: req.body.user_id
     }
-  })
-    .then(user => {
+  }).then(user => {
       if (user) {
         if (bcrypt.compareSync(req.body.password, user.password)) {
           let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
@@ -34,7 +31,6 @@ user.post('/login', (req, res) => {
 
 
 
-//Register & Profile은 쓸일 없지만 일단 살려둠
 user.post('/register', (req, res) => {
   //const today = new Date().toDateString()
   
