@@ -112,7 +112,7 @@ class BlacklistManagementAdd extends React.Component {
                         <TextField label="이메일" type="text" id="email" name="email" value={this.state.email} onChange={this.handleValueChange} /><br />
                         <TextField label="role" type="text" id="role" name="role" value={this.state.role} onChange={this.handleValueChange} /><br />
                         <TextField label="전화번호" type="text" id="phone" name="phone" value={this.state.phone} onChange={this.handleValueChange} /><br /><br />
-                        <TextField id="standard-number"InputLabelProps={{shrink: true}} label="삭제날짜" type="date" id="delete_date" name="delete_date" value={this.state.delete_date} onChange={this.handleValueChange} /><br />
+                        <TextField label="삭제날짜" type="date" id="delete_date" InputLabelProps={{shrink: true}} name="delete_date" value={this.state.delete_date} onChange={this.handleValueChange} /><br />
                     </DialogContent>
                     <DialogActions>
                         <Button variant="contained" color="primary" onClick={this.handleFormSubmit}>추가</Button>

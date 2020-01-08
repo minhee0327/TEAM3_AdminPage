@@ -21,18 +21,18 @@ class AdminGeneralChart1 extends Component{
                     label: "장르별예매율",
                     data: data.map(d => d.value),
                     fill: false,
-                    backgroundColor: ['rgba(28, 62, 245, 0.6)',
-                                        'rgba(54, 162, 235, 0.6)',
-                                        'rgba(255, 206, 86, 0.6)',
-                                        'rgba(75, 192, 192, 0.6)',
-                                        'rgba(153, 112, 255, 0.6)',
-                                        'rgba(246, 11, 82, 0.6)',
-                                        'rgba(66, 159, 64, 0.6)',
-                                        'rgba(153, 102, 255, 0.6)',
-                                        'rgba(61, 128, 205, 0.6)',
-                                        'rgba(105, 101, 159, 0.6)',
-                                        'rgba(248, 117, 162, 0.6)',
-                                        'rgba(175, 130, 167, 0.6)'],
+                    backgroundColor: ['rgba(255, 99, 132, 0.6)',
+                                    'rgba(239, 41, 57, 0.6)',
+                                    'rgba(229, 149, 175, 0.6)',
+                                    'rgba(202, 128, 138, 0.6)',
+                                    'rgba(215, 188, 215, 0.6)',
+                                    'rgba(218, 207, 222, 0.6)',
+                                    'rgba(200, 100, 146, 0.6)',
+                                    'rgba(180, 91, 109, 0.6)',
+                                    'rgba(215, 144, 152, 0.6)',
+                                    'rgba(231, 193, 192, 0.6)',
+                                    'rgba(226, 110, 167, 0.6)',
+                                    'rgba(225, 130, 167, 0.6)'],
                     borderColor: 'rgba(255, 255, 255, 0.6)',
                     lineTension: 0,
                     pointRadius: 0
@@ -52,6 +52,9 @@ class AdminGeneralChart1 extends Component{
                 hover: {
                     mode: "nearest",
                     intersect: true
+                },
+                legend:{
+                    position: 'right'
                 }
             }
         };

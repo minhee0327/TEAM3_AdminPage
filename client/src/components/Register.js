@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { register } from './UserFunctions'
 import {Link} from 'react-router-dom';
+import '../css/Login.css';
 
 class Register extends Component {
     constructor() {
@@ -40,7 +41,7 @@ class Register extends Component {
             <div className="row">
               <div className="col-md-6 mt-5 mx-auto">
                 <form noValidate onSubmit={this.onSubmit}>
-                  <h1 className="h3 mb-3 font-weight-normal">Register(등록 성공 시 Login Page로 이동!)</h1>
+                  <h1 className="h3 mb-3 text-center font-weight-normal">회원가입</h1>
                   <div className="form-group">
                     <label htmlFor="user_id">ID</label>
                     <input
@@ -76,11 +77,11 @@ class Register extends Component {
                   </div>
                   <button
                     type="submit"
-                    className="btn btn-lg btn-primary btn-block"
+                    className="btn btn-lg btn-dark btn-block"
                   >
-                    Register!
+                    Register
                   </button>
-                  <Link to ='/login' className="btn btn-lg btn-primary btn-block">Login Page 로!</Link>
+                  <Link to ='/login' className="btn btn-lg btn-dark btn-block">Login Page</Link>
                 </form>
               </div>
             </div>

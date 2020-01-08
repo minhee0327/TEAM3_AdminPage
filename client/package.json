@@ -29,8 +29,8 @@
   },
   "scripts": {
     "clean": "rm -rf build public/bundle.js",
-    "start": "cross-env NODE_PATH=src react-scripts start rm -rf build public/bundle.js && ./node_modules/.bin/babel server --out-dir build && ./node_modules/.bin/webpack --progress && node ./build/main.js",
-    "build": "cross-env NODE_PATH=src react-scripts build ./node_modules/.bin/babel server --out-dir build && ./node_modules/.bin/webpack --progress",
+    "start": "cross-env NODE_PATH=src react-scripts start",
+    "build": "cross-env NODE_PATH=src react-scripts build ",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

@@ -27,7 +27,7 @@ class AdminGeneralChart1 extends Component{
                     pointRadius: 0,
                 },
                 {
-                    label: "환불액",
+                    label: "강퇴수",
                     data: data2.map(d => d.value2),
                     fill: false,
                     backgroundColor: 'rgba(54, 162, 235, 0.2)',

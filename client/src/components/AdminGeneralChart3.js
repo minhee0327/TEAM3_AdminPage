@@ -29,7 +29,7 @@ class AdminGeneralChart3 extends Component{
                     'rgba(66, 159, 64, 0.6)',
                     'rgba(105, 101, 159, 0.6)',
                     'rgba(175, 130, 167, 0.6)'],
-                    borderColor:     'rgba(255, 255, 255, 0.6)',
+                    borderColor:  'rgba(255, 255, 255, 0.6)',
                     lineTension: 0,
                     pointRadius: 0,
                 }

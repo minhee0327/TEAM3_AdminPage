@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { login } from './UserFunctions'
 import {Link} from 'react-router-dom';
+import '../css/Login.css';
 
 class Login extends Component {
     constructor() {
@@ -71,7 +72,7 @@ inputClassNameHelper = boolean => {
             <div className="row">
               <div className="col-md-6 mt-5 mx-auto">
                 <form noValidate onSubmit={this.onSubmit}>
-                  <h1 className="h3 mb-3 font-weight-normal">Admin sign in</h1>
+                  <h1 className="h3 mb-3 text-center font-weight-normal">Admin 로그인</h1>
                   <div className="form-group">
                     <label htmlFor="user_id">ID</label>
                     <input
@@ -99,11 +100,10 @@ inputClassNameHelper = boolean => {
                   </div>
                   <button
                     type="submit"
-                    className="btn btn-lg btn-primary btn-block"
-                  >
+                    className="btn btn-lg btn-dark btn-block">
                     Sign in
                   </button>
-                  <Link to ='/register' className="btn btn-lg btn-primary btn-block">register!</Link>
+                  <Link to ='/register' className="btn btn-lg btn-dark btn-block">register</Link>
                 </form>
               </div>
             </div>
