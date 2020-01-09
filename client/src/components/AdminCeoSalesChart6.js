@@ -25,7 +25,7 @@ class AdminClientSalesChart6 extends Component{
                   value: candle.sum
                 })
               );
-            
+            console.log(data);
             const response1 = await axios.get(`/adminCeoSalesRefundDetail6/`+this.props.phone)
             //console.log(response1);
             const data2 = response1.data.map(

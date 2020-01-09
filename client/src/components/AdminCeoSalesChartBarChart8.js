@@ -4,6 +4,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 let date = new Date();
 let dd = date.getDate();
+console.log(dd);
 
 class AdminCeoSalesChartBarChart8 extends Component{
     chart = null;

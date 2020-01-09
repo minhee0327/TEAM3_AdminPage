@@ -12,14 +12,26 @@ class BarChart1 extends Component{
         }
         const {data, pair,data2} = this.props;
 
+        let a = data.map(d=>d.date);
+        console.log(a);
+        let first = a[2];
+        let second =a[1];
+        let third = a[0];
+        
+        let b = data.map(d=>d.value);
+        console.log(b);
+        let first1 = b[2];
+        let second1 =b[1];
+        let third1 = b[0];
+
         const config = {
             type:"bar",
             data: {
-                labels: data.map(d => d.date),
+                labels: [second, first, third],
                 datasets: [
                 {
                     label: "매출액",
-                    data: data.map(d => d.value),
+                    data: [second1, first1, third1],
                     fill: false,
                     backgroundColor: 'rgba(255, 99, 132, 0.6)',
                     borderColor: 'rgba(255, 99, 132, 0.6)',
