@@ -1,5 +1,14 @@
 ## 연극어때 Admin Page
 본 프로젝트를 통해서 매출 분석, 회원분석, 후기관리, 회원관리 등을 할 수 있습니다.
+(Chart.js, CURD, 로그인을 할 수 있습니다.)
+
+## when you want to start
+database.json을 서버단에 파일을 만드신 후, host, user, password, port, database를 설정해야 합니다.
+
+## 모듈(module)설치 시
+서버, client 모두 yarn 을 해주세요.
+혹시 설치 에러시 bcrypt 의 버전을 확인해서 3.0.6 이하 버전으로 맞추어 주세요.
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

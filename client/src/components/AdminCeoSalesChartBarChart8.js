@@ -66,12 +66,6 @@ class AdminCeoSalesChartBarChart8 extends Component{
                 scales:{
                     xAxes:[{
                         display: true,
-                        /*
-                        id:'newId',
-                        gridLines:{
-                            lineWidth:0
-                        }
-                        */
                     }],
                     yAxes: [{
                         display: true,
