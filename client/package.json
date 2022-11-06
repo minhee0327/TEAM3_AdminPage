@@ -35,7 +35,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies":{
-    "babel-core": "~6.7.*",
+    "babel-core": "~6.26.*",
     "babel-cli": "~6.9.*",
     "babel-loader": "8.0.6",
     "babel-plugin-react-transform": "^2.0.2",
