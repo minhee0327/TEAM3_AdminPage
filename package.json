@@ -22,7 +22,7 @@
     "react-scripts": "3.3.0",
     "yarn": "^1.22.0",
     "bcrypt": "3.0.0",
-    "jsonwebtoken": "^7.4.2",
+    "jsonwebtoken": "^9.0.0",
     "mysql2": "^1.6.1",
     "sequelize": "^4.38.0"
   },
